@@ -16,24 +16,31 @@
 using namespace std;
 int counter;
 bool isKaibun(string str){
-    cout << str << endl;
-    int length = str.size();
-    char fst = str.at(0);
-    char last = str.at(length - 1);
-    if(length <= 1) return true;
-    if(fst != last){
-        if(fst == 'x'){ //前がx
-            str += "x"; //末尾にx追加
+    //cout << str << endl;
+    //int length = str.size();
+    //char fst = str.at(0);
+    int next = 0;
+    int end = str.size() - 1;
+    //char last = str.at(length - 1);
+    if(end <= 0) return true;
+    if(str.at(0) != str.at(end)){
+        if(str.at(next) == 'x'){ //前がx
+            //str += "x"; //末尾にx追加
+            next++;
         }else{ //前がxじゃないとき
-            if(last != 'x'){
+            if(str.at(end) != 'x'){
                 return false;
             }
-            str = "x" + str;//先頭にx追加
+            //str = "x" + str;//先頭にx追加
+            //end--;
         }
         counter++;
     }else{
-        str = str.substr(1, length - 2);
+        next++;
+        end--;
     }
+    //cout << next << "," << end << endl;
+    str = str.substr(next, end);
     
     //cout << str << endl;
     return isKaibun(str);
