@@ -17,6 +17,21 @@ using namespace std;
 
 int main(){
     ios::sync_with_stdio(false);
-
+    int N;
+    //vi vec;
+    int i;
+    int ans = 0;
+    int tmp = 1;
+    cin >> N;
+    rep(j, N){
+        cin >> i;
+        if(i % 2 == 0){
+            tmp = tmp * 2;
+        }
+    }
+    
+    ans = pow(3, N) - tmp;
+    //cout << tmp << "\n";
+    cout << ans << "\n";
     return 0;
 }

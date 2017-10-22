@@ -17,6 +17,13 @@ using namespace std;
 
 int main(){
     ios::sync_with_stdio(false);
+    string str;
+    cin >> str;
+    if(str.find("AC") != string::npos){
+        cout << "Yes" << "\n";
+    }else{
+        cout << "No" << "\n";
+    }
 
     return 0;
 }
