@@ -14,20 +14,20 @@
 #define vd vector<double>
 
 using namespace std;
-vector<char> vec;
 int counter;
-bool isKaibun(){
-    if(strlen(ary) <= 1) return true;
+bool isKaibun(string str){
+    int length = str.size();
+    char fst = str.at(0);
+    char last = str.at(length - 1);
+    if(length <= 1) return true;
     if(fst != last){
         if(fst == 'x'){ //前がx
-            //str += "x";
-            str = str.substr(1, length - 1);
+            str += "x";
         }else{ //前がxじゃないとき
             if(last != 'x'){
                 return false;
             }
-            str = str.substr(0, length - 2);
-            //str = "x" + str;
+            str = "x" + str;
         }
         counter++;
     }else{
@@ -42,10 +42,9 @@ int main(){
     ios::sync_with_stdio(false);
     string str;
     cin >> str;
-    vec.push_back();
     counter = 0;
 
-    if(isKaibun(ary)){
+    if(isKaibun(str)){
         cout << counter << "\n";
     }else{
         cout << -1 << "\n";
