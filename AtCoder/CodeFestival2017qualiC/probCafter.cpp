@@ -15,44 +15,32 @@
 
 using namespace std;
 int counter;
-bool isKaibun(string str){
-    //cout << str << endl;
-    //int length = str.size();
-    //char fst = str.at(0);
-    int next = 0;
-    int end = str.size() - 1;
-    //char last = str.at(length - 1);
-    if(end <= 0) return true;
-    if(str.at(0) != str.at(end)){
-        if(str.at(next) == 'x'){ //前がx
-            //str += "x"; //末尾にx追加
-            next++;
-        }else{ //前がxじゃないとき
+string str;
+bool isKaibun(int start, int end){
+    if(end - start + 1 <= 1) return true;
+    if(str.at(start) != str.at(end)){
+        if(str.at(start) == 'x'){
+            start++;
+        }else{
             if(str.at(end) != 'x'){
                 return false;
             }
-            //str = "x" + str;//先頭にx追加
-            //end--;
+            end--;
         }
         counter++;
     }else{
-        next++;
+        start++;
         end--;
     }
-    //cout << next << "," << end << endl;
-    str = str.substr(next, end);
-    
-    //cout << str << endl;
-    return isKaibun(str);
+    return isKaibun(start, end);
 }
 
 int main(){
     ios::sync_with_stdio(false);
-    string str;
     cin >> str;
     counter = 0;
 
-    if(isKaibun(str)){
+    if(isKaibun(0, str.size() - 1)){
         cout << counter << "\n";
     }else{
         cout << -1 << "\n";
