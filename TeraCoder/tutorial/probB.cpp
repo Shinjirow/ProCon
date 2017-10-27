@@ -17,6 +17,14 @@ using namespace std;
 
 int main(){
     ios::sync_with_stdio(false);
+    int N;
+    cin >> N;
+    int a, b;
+    rep(i, N){
+        cin >> a >> b;
+        cout << "Case #" << i + 1 << ":\n";
+        cout << a / b << " " << a % b << "\n";
+    }
 
     return 0;
 }

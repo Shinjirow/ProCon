@@ -17,6 +17,21 @@ using namespace std;
 
 int main(){
     ios::sync_with_stdio(false);
+    int N;
+    cin >> N;
+    int M;
+    int a;
+    int ans = 0;
+    rep(i, N){
+        cin >> M;
+        rep(j,M){
+            cin >> a;
+            ans += a;
+        }
+        cout << "Case #" << i + 1 << ":\n";
+        cout << ans << "\n";
+        ans = 0;
+    }
 
     return 0;
 }
