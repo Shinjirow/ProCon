@@ -17,8 +17,27 @@
 
 using namespace std;
 
+int K;
+int getMin(int i, int num){
+    if(i > 0){
+
+        if(num * 2 > num + K){
+            num = getMin(i - 1, num + K);
+        }else{
+            num = getMin(i - 1, num * 2);
+        }
+    }
+    return num;
+
+}
+
 int main(){
     ios::sync_with_stdio(false);
+    int num = 1;
+    int N;
+    cin >> N;
+    cin >> K;
+    cout << getMin(N, num) << "\n";
 
     return 0;
 }

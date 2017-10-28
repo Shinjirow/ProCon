@@ -19,6 +19,11 @@ using namespace std;
 
 int main(){
     ios::sync_with_stdio(false);
+    double a;
+    cin >> a;
+    int ans;
+    cin >> ans;
+    cout << (ans - (a / 2.0)) * 2.0 << "\n";
 
     return 0;
 }
