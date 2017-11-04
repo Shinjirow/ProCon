@@ -19,6 +19,10 @@ using namespace std;
 
 int main(){
     ios::sync_with_stdio(false);
+    int N;
+    cin >> N;
+    N = sqrt(N);
+    cout << N * N << endl;
 
     return 0;
 }

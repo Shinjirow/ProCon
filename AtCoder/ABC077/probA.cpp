@@ -19,6 +19,16 @@ using namespace std;
 
 int main(){
     ios::sync_with_stdio(false);
+    string str;
+    string str2;
+    cin >> str;
+    cin >> str2;
+    reverse(str.begin(), str.end());
+    if(str == str2){
+        cout << "YES" << endl;
+    }else{
+        cout << "NO" << endl;
+    }
 
     return 0;
 }
