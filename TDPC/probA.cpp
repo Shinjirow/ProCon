@@ -16,24 +16,14 @@
 #define vi vector<int>
 #define vd vector<double>
 
-//ここからTeraCoder向けdefine
-#define ok cout << "OK" << endl
-#define ng cout << "NG" << endl
-#define case(i) cout << "Case #" << i + 1 << endl
+//ここからAtCoder向けdefine
+#define yes cout << "YES" << endl;
+#define no cout << "NO" << endl;
 
 using namespace std;
 
 int main(){
     ios::sync_with_stdio(false);
-
-    int T;
-    cin >> T;
-    int l1, l2;
-    rep(xxx, T){
-        cin >> l1 >> l2;
-
-        case(xxx);
-    }
 
     return 0;
 }
