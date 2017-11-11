@@ -24,6 +24,24 @@ using namespace std;
 
 int main(){
     ios::sync_with_stdio(false);
+    int x, y, z;
+
+    cin >> x >> y >> z;
+    int counter = 0;
+    int current = 0;
+    current += z;
+    while(true){
+        current += y;
+        current += z;
+        //cout << current << endl;
+        if(current > x){
+            break;
+        }else{
+            counter++;
+        }
+    }
+
+    cout << counter << endl;
 
     return 0;
 }

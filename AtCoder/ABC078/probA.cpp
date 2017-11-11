@@ -22,8 +22,28 @@
 
 using namespace std;
 
+char letter[6] = {'A', 'B', 'C', 'D', 'E', 'F'};
+
 int main(){
     ios::sync_with_stdio(false);
+    char a, b;
+    cin >> a >> b;
+    int anum, bnum;
+    rep(i, 6){
+        if(a == letter[i]){
+            anum = i;
+        }
+        if(b == letter[i]){
+            bnum = i;
+        }
+    }
+    if(anum > bnum){
+        cout << ">" << endl;
+    }else if(anum == bnum){
+        cout << "=" << endl;
+    }else{
+        cout << "<" << endl;
+    }
 
     return 0;
 }

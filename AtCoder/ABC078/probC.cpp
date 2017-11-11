@@ -25,5 +25,11 @@ using namespace std;
 int main(){
     ios::sync_with_stdio(false);
 
+    int N, M;
+    cin >> N >> M;
+    int oneSubmit = (1900 * M) + (100 * (N - M));
+    int kakeru = pow(2, M);
+    cout << oneSubmit * kakeru << endl;
+
     return 0;
 }
