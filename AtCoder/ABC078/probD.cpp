@@ -26,6 +26,32 @@ int main(){
     ios::sync_with_stdio(false);
     int N, Z, W;
     cin >> N >> Z >> W;
+    vi vec(N);
+    int max = -1, min = 1000000001;
+    rep(i, N){
+        cin >> vec[N];
+        if(vec[N] >= max){
+            max = N;
+        }
+        if(vec[N] <= min){
+            min = N;
+        }
+    }
 
+    if(max >= N - 2 && min < max){
+        //どちらかを犠牲にする必要がある
+        if(vec[max] - vec[max + 1] >= vec[N - 1] - W){
+            Z = vec[max];
+            W = vec[max + 1];
+        }else{
+            Z = vec[max + 1];
+        }
+    }else{
+        Z = vec[max];
+        W = vec[min];
+    }
+
+    cout << Z - W << endl;
+    
     return 0;
 }
