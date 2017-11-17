@@ -20,6 +20,7 @@
 #define ok cout << "OK" << "\n"
 #define ng cout << "NG" << "\n"
 #define case(i) cout << "Case #" << i + 1 << ":\n"
+#define import(n) int n;cin >> n;
 
 using namespace std;
 
