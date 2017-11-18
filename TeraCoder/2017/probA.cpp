@@ -25,6 +25,19 @@ using namespace std;
 
 int main(){
     ios::sync_with_stdio(false);
+    int T;
+    cin >> T;
+    int S, O, C;
+    rep(xxx, T){
+        cin >> S >> O >> C;
+
+        case(xxx);
+        if(O + C > S){
+            ng;
+        }else{
+            cout << O + C << endl;
+        }
+    }
 
     return 0;
 }

@@ -25,6 +25,58 @@ using namespace std;
 
 int main(){
     ios::sync_with_stdio(false);
+    int T;
+    cin >> T;
+    int C, L;
+    int cur = 0;
+    int howmany = 0;
+    int tmp;
+    int nokori = 0;
+    rep(xxx, T){
+        cin >> C >> L;
+        vi carp(L);
+        rep(i, L){
+            cin >> carp[i];
+        }
+        vsort(carp);
+        rep(i, carp.size()){
+            nokori += carp[i];
+        }
+        for(;;){
+            if(nokori < C) break;
+            cur += carp.back();
+            carp.erase(carp.end() - 1);
+            for(;;){
+                
+                cout << cur << endl;
+                rep(i, carp.size()){
+                    cout << carp[i] << ", ";
+                }cout << endl;
+                
+
+                if(cur >= C){
+                    //cout << "counted" << endl;
+                    howmany++;
+                    nokori -= cur;
+                    cur = 0;
+                    break;
+                }else{
+                    if(nokori < C) break;
+                    tmp = C - cur;
+                    cur += *lower_bound(carp.begin(), carp.end(), tmp);
+                    carp.erase(lower_bound(carp.begin(), carp.end(), tmp));
+                }
+                if(carp.size() == 0) break;
+            }
+            //cout << cur << endl;
+            if(carp.size() == 0) break;
+        }
+        case(xxx);
+        cout << howmany << endl;
+        howmany = 0;
+        cur = 0;
+        nokori = 0;
+    }
 
     return 0;
 }

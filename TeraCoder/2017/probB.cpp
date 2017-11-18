@@ -25,6 +25,35 @@ using namespace std;
 
 int main(){
     ios::sync_with_stdio(false);
+    int T;
+    cin >> T;
+    int N;
+    string str;
+    string name;
+    string type;
+    int howmany = 0;
+    rep(xxx, T){
+        case(xxx);
+        cin >> N;
+        rep(i, N){
+            cin >> str;
+            rep(i, str.length()){
+                if(str.at(i) == ':'){
+                     name = str.substr(0, i);
+                     type = str.substr(i + 1, str.length() - 1);
+                    if(type == "Friend"){
+                        cout << name << endl;
+                        howmany++;
+                    }
+                    break;
+                }
+            }
+        }
+        if(howmany == 0){
+                cout << "Not Friends" << endl;
+            }
+            howmany = 0;
+    }
 
     return 0;
 }
