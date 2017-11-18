@@ -22,8 +22,23 @@
 
 using namespace std;
 
+long long int luca[86];
+
+long long int lucas(int N){
+    if(luca[N] != 0){
+        return luca[N];
+    }else{
+        luca[N] = lucas(N - 2) + lucas(N - 1);
+        return lucas(N - 2) + lucas(N - 1);
+    }
+}
+
 int main(){
     ios::sync_with_stdio(false);
-
+    long long int N;
+    cin >> N;
+    luca[0] = 2;
+    luca[1] = 1;
+    cout << lucas(N) << endl;
     return 0;
 }

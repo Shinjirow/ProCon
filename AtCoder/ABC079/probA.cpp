@@ -17,13 +17,34 @@
 #define vd vector<double>
 
 //ここからAtCoder向けdefine
-#define yes cout << "YES" << endl;
-#define no cout << "NO" << endl;
+#define yes cout << "Yes" << endl;
+#define no cout << "No" << endl;
 
 using namespace std;
 
 int main(){
     ios::sync_with_stdio(false);
-
+    char a[4];
+    rep(i, 4){
+        cin >> a[i];
+    }
+    char b;
+    int c = 0;
+    rep(i, 4){
+        b = a[i];
+        rep(j, 4){
+            if(b == a[j]){
+                c++;
+            }else{
+                c = 0;
+            }
+            if(c >= 3){
+                yes;
+                return 0;
+            }
+        }
+        c = 0;
+    }
+    no;
     return 0;
 }
