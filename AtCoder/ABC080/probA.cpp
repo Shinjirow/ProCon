@@ -24,6 +24,12 @@ using namespace std;
 
 int main(){
     ios::sync_with_stdio(false);
+    int N, A, B;
+    cin >> N >> A >> B;
+    if(N * A < B)
+        cout << N * A << endl;
+    else
+        cout << B << endl;
     
     return 0;
 }

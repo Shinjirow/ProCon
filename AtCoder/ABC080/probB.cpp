@@ -24,6 +24,19 @@ using namespace std;
 
 int main(){
     ios::sync_with_stdio(false);
+    int N;
+    cin >> N;
+    int amari = 0;
+    int tgt = N;
+    while(N > 0){
+        amari += N % 10;
+        N = N / 10;
+    }
+    if(tgt % amari == 0){
+        yes;
+    }else{
+        no;
+    }
 
     return 0;
 }
