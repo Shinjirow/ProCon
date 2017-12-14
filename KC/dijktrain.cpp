@@ -1,5 +1,3 @@
-//書き散らかしたけど未完
-
 #include <iostream>
 #include <vector>
 #include <map>
@@ -10,6 +8,7 @@
 #include <cstring>
 #include <stack>
 #include <queue>
+#include <climits>
 
 #define REP(i,a,n) for(int i=a;i<n;++i)
 #define rep(i,n) REP(i,0,n)
@@ -22,32 +21,32 @@ using namespace std;
 
 typedef pair<int, int> pii;
 
-struct Node{
+struct Edge{
+    int from;
     int to;
     int cost;
 };
 
-int INF;
+int I, J;
 
-int V;
-vector<Node> G[MAX_V];
-int d[MAX_V];
+vector<Edge> G[17];
+int d[17];
 
 void dijkstra(int s){
     priority_queue<pii, vector<pii>, greater<pii> > que;
-    fill(d, d + V, INF);
+    fill(d, d + I, INT_MAX);
     d[s] = 0;
     que.push(pii(0,s));
 
     while(!que.empty()){
         pii p = que.top(); que.top();
         int v = p.second;
-        if(d[v] <p.first) continue;
-        REP(i, 0, G[V].size()){
-            Node n = G[v][i];
-            if(d[n.to] = d[v] + n.cost){
-                d[n.to] = d[v] + n.cost;
-                que.push(pii(d[n.to], n.to));
+        if(d[v] < p.first) continue;
+        REP(i, 0, G[I].size()){
+            Edge e = G[v][i];
+            if(d[e.to] > d[v] + e.cost){
+                d[e.to] = d[v] + e.cost;
+                que.push(pii(d[e.to], e.to));
             }
         }
     }
@@ -55,8 +54,12 @@ void dijkstra(int s){
 
 int main(){
     ios::sync_with_stdio(false);
-    
-    
 
+    cin >> I >> J;
+    Edge e;
+
+    rep(i, 17){
+        cin >> e.from;
+    }
     return 0;
 }
