@@ -17,8 +17,8 @@
 #define vd vector<double>
 
 //ここからAtCoder向けdefine
-#define yes cout << "Yes" << endl;
-#define no cout << "No" << endl;
+#define yes cout << "YES" << endl;
+#define no cout << "NO" << endl;
 
 using namespace std;
 
