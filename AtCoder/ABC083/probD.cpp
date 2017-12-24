@@ -24,6 +24,46 @@ using namespace std;
 
 int main(){
     ios::sync_with_stdio(false);
+    string s;
+    cin >> s;
+    int cnt = 0;
+    vi vec;
+    char prev = s.at(0);
+    rep(i, s.size()){
+        if(prev != s.at(i)){
+            prev = s.at(i);
+            vec.push_back(cnt);
+            cnt = 0;
+        }
+        cnt++;
+    }
+    vec.push_back(cnt);
+    if(vec.size() <= 2){
+        sort(vec.begin(), vec.end(), greater<int>());
+        cout << vec[0] << endl;
+    }else{
+        int cnt = 0;
+        int half;
+        if(s.size() % 2 == 1){
+            half = s.size() / 2 + 1;
+        }else{
+            half = s.size() / 2;
+        }
+        int tmp = 0;
+        rep(i, vec.size()){
+            cnt += vec[i];
+            if(cnt >= half) break;
+        }
+        swap(tmp, cnt);
+        for(int i = vec.size() - 1;i >= 0;--i){
+            cnt += vec[i];
+            if(cnt >= half) break;
+        }
+        if(tmp < cnt){
+            swap(tmp, cnt);
+        }
+        cout << cnt << endl;
+    }
 
     return 0;
 }

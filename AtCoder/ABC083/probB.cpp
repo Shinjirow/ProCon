@@ -24,6 +24,26 @@ using namespace std;
 
 int main(){
     ios::sync_with_stdio(false);
+    int n, a, b;
+    cin >> n >> a >> b;
+    int kakuketanowa;
+    int kakuketa;
+    int m;
+    int sum = 0;
+    REP(i, 1, n + 1){
+        m = i;
+        kakuketanowa = 0;
+        while(m){
+            kakuketa = m % 10;
+            kakuketanowa += kakuketa;
+            m /= 10;
+        }
+        if(kakuketanowa >= a && kakuketanowa <= b){
+            sum += i;
+        }
+    }
+
+    cout << sum << endl;
 
     return 0;
 }

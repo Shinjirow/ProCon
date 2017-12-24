@@ -24,6 +24,17 @@ using namespace std;
 
 int main(){
     ios::sync_with_stdio(false);
+    int a, b, c, d;
+    cin >> a >> b >> c >> d;
+    int e = a + b;
+    int f = c + d;
+    if(e > f){
+        cout << "Left" << endl;
+    }else if(e < f){
+        cout << "Right" << endl;
+    }else{
+        cout << "Balanced" << endl;
+    }
 
     return 0;
 }

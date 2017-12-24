@@ -24,6 +24,13 @@ using namespace std;
 
 int main(){
     ios::sync_with_stdio(false);
+    long long int x, y;
+    cin >> x >> y;
+    long long int cnt = 0;
+    for(long long int i = x;i <= y;i *= 2){
+        cnt++;
+    }
+    cout << cnt << endl;
 
     return 0;
 }
