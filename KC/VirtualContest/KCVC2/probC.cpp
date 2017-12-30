@@ -24,6 +24,28 @@ using namespace std;
 
 int main(){
     ios::sync_with_stdio(false);
+    int N;
+    cin >> N;
+    vi vec(N);
+    rep(i, N){
+        cin >> vec[i];
+    }
+    vsort(vec);
+    int max = 0;
+    rep(i, N){
+        max += vec[i];
+    }
+    if(max % 10 == 0){
+        rep(i, N){
+            if(vec[i] % 10 != 0){
+                cout << max - vec[i] << endl;
+                return 0;
+            }
+        }
+        cout << 0 << endl;
+    }else{
+        cout << max << endl;
+    }
 
     return 0;
 }

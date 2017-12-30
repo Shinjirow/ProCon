@@ -25,5 +25,19 @@ using namespace std;
 int main(){
     ios::sync_with_stdio(false);
 
+    char c[27];
+    string s;
+    cin >> s;
+    rep(i, s.size()){
+        c[i] = s.at(i);
+        rep(j, i){
+            if(c[j] == c[i]){
+                cout << "no" << endl;
+                return 0;
+            }
+        }
+    }
+    cout << "yes" << endl;
+
     return 0;
 }
