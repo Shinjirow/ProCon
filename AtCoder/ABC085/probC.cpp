@@ -22,13 +22,28 @@
 
 using namespace std;
 
+int n, y;
+
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
-    int osatsu[3] = {10000, 5000, 1000};
-    int n, y;
+    int osatsu[3] = {1000, 5000, 10000};
     cin >> n >> y;
-    
+    int nokori;
+    int sum;
+    for(int i = n;i >= 0;--i){
+        nokori = n - i;
+        rep(j, (n - i) + 1){
+            sum = (osatsu[0] * i);
+            sum += (osatsu[1] * ((n - i) - j));
+            sum += (osatsu[2] * j);
+            if(sum == y) {
+                cout << j << ' ' << n - i - j << ' ' << i << endl;
+                return 0;
+            }
+        }
+    }
+    cout << -1 << ' ' << -1 << ' ' << -1 << endl;
 
     return 0;
 }
