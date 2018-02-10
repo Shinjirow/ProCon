@@ -14,22 +14,30 @@
 
 #define REP(i,a,n) for(int i=a;i<n;++i)
 #define rep(i,n) REP(i,0,n)
-#define all(e) e.begin(), e.end()
-#define vi vector<int>
-#define vd vector<double>
+#define REV(i,a,n) for(int i=n;i>=a;--i)
+#define all(e) e.begin(),e.end()
+#define rall(e) e.rbegin(),e.rend()
+#define pb push_back
+#define mp make_pair
+#define fs first
+#define sc second
+#define show(n) cerr<<#n<<" = "<<n<<endl
+#define shows(n) for(auto z:n){cerr<<z<<", ";}cerr<<endl
 
 //ここからTeraCoder向けdefine
 #define ok cout << "OK" << "\n"
 #define ng cout << "NG" << "\n"
 #define case(i) cout << "Case #" << i + 1 << ":\n"
-#define import(n) int n;cin >> n;
-
-typedef long long ll;
-typedef unsigned long long ull;
-
-const int INF = ~(1 << 31);
+#define import(n) int n;cin >> n
 
 using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using vi = vector<int>;
+using pint = pair<int,int>;
+
+const int INF = ~(1 << 31);
 
 int main(){
     cin.tie(0);
