@@ -8,74 +8,84 @@
 #include <cstring>
 #include <stack>
 #include <queue>
+#include <set>
+#include <unordered_map>
+#include <unordered_set>
 
 #define REP(i,a,n) for(int i=a;i<n;++i)
 #define rep(i,n) REP(i,0,n)
-#define vsort(v) sort(v.begin(),v.end())
-#define asort(a,n) sort(a, a + n)
-#define vi vector<int>
-#define vd vector<double>
+#define REV(i,a,n) for(int i=n;i>=a;--i)
+#define all(e) e.begin(),e.end()
+#define rall(e) e.rbegin(),e.rend()
+#define pb push_back
+#define mp make_pair
+#define fs first
+#define sc second
+#define show(n) cerr<<#n<<" = "<<n<<endl
+#define shows(n) for(auto z:n){cerr<<z<<", ";}cerr<<endl
 
 //ここからAtCoder向けdefine
-#define yes cout << "Yes" << endl;
-#define no cout << "No" << endl;
+#define yes cout << "Yes" << endl
+#define no cout << "No" << endl
 
 using namespace std;
 
-int x, y;
-vector<char> vc;
+using ll = long long;
+using ull = unsigned long long;
+using vi = vector<int>;
+using pint = pair<int,int>;
 
-void dfs(pair<int, int> cur, int i, int muki){
-    cout << cur.first << ',' << cur.second << ", muki = " << muki << endl;
-    if(vc.size() == i){
-        if(cur.first == x && cur.second == y){
-            yes;
-            return;
-        }
-        else{
-            no;
-            return;
-        }
+const int INF = (1 << 30);
+
+string str;
+pint goal;
+
+bool able = false;
+
+int dx[4] = {1, 0, -1, 0}, dy[4] = {0, 1, 0, -1};
+
+void dfs(int i, int muki, pint cur){
+    if(able) return;
+    if(i == str.size()){
+        if(cur.fs == goal.fs && cur.sc == goal.sc){ able = true; }
+        return;
     }
-    if(vc[i] == 'F'){
-        if(muki == 0){
-            --cur.second;
-        }else if(muki == 1){
-            ++cur.first;
-        }else if(muki == 2){
-            ++cur.second;
-        }else{
-            --cur.first;
-        }
-        dfs(cur, ++i, muki);
+    if(str[i] == 'F'){
+        cur.fs += dx[muki];
+        cur.sc += dy[muki];
+        dfs(i + 1, muki, cur);
     }else{
-        //cout << "T comes" << endl;
         if(muki == 3){
-            dfs(cur, ++i, 0);
+            dfs(i + 1, 0, cur);
+            dfs(i + 1, muki - 1, cur);
+        }else if(muki == 0){
+            dfs(i + 1, muki + 1, cur);
+            dfs(i + 1, 3, cur);
         }else{
-            int m = muki;
-            dfs(cur, ++i, ++m);
-        }
-
-        if(muki == 0){
-            dfs(cur, ++i, 3);
-        }else{
-            int m = muki;
-            dfs(cur, ++i, --m);
+            dfs(i + 1, muki + 1, cur);
+            dfs(i + 1, muki - 1, cur);
         }
     }
-
 }
 
 int main(){
+    cin.tie(0);
     ios::sync_with_stdio(false);
-    string s;
-    cin >> s;
-    cin >> x >> y;
-    rep(i, s.size()){
-        vc.push_back(s.at(i));
+    cin >> str;
+    int num = 0;
+    rep(i, str.size()){if(str[i] == 'F'){num++;}}
+    int a, b;
+    cin >> a >> b;
+
+    if(num < abs(a) + abs(b)){no;return 0;}
+
+    goal = mp(a, b);
+    dfs(0, 0, mp(0, 0));
+    if(able){
+        yes;
+    }else{
+        no;
     }
-    dfs(make_pair(0, 0), 0, 1);
 
     return 0;
 }
