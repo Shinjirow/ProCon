@@ -21,6 +21,7 @@
 #define mp make_pair
 #define fs first
 #define sc second
+#define mod 1000000007
 #define show(n) cerr<<#n<<" = "<<n<<endl
 #define shows(n) for(auto z:n){cerr<<z<<", ";}cerr<<endl
 
@@ -37,7 +38,7 @@ using ull = unsigned long long;
 using vi = vector<int>;
 using pint = pair<int,int>;
 
-const int INF = ~(1 << 31);
+const int INF = (1 << 30);
 
 int main(){
     cin.tie(0);

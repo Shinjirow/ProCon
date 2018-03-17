@@ -1,9 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 
 declare -a array=("A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z")
 
-echo "Contest name = "
-read NAME
+if [ $# -eq 1 ]; then
+    NAME="${1}"
+else
+    echo "Contest name = "
+    read NAME
+fi
 
 mkdir -p ./${NAME}
 
