@@ -89,14 +89,14 @@ int main(){
         rep(i, 4){
             pint next = mp(cur.fs + dx[i], cur.sc + dy[i]);
             if(next.fs < 0 || next.fs >= H || next.sc < 0 || next.sc >= W) continue;
-            if(!already[cur.fs + dx[i]][cur.sc + dy[i]] && field[cur.fs + dx[i]][cur.sc + dy[i]] != '.'){
-                already[cur.fs + dx[i]][cur.sc + dy[i]] = true;
-                if(isupper(field[cur.fs + dx[i]][cur.sc + dy[i]])){
-                    deq.push_back(mp(cur.fs + dx[i], cur.sc + dy[i]));
-                    cost[cur.fs + dx[i]][cur.sc + dy[i]] = cost[cur.fs][cur.sc] + 1;
+            if(!already[next.fs][next.sc] && field[next.fs][next.sc] != '.'){
+                already[next.fs][next.sc] = true;
+                if(isupper(field[next.fs][next.sc])){
+                    deq.push_back(next);
+                    cost[next.fs][next.sc] = cost[cur.fs][cur.sc] + 1;
                 }else{
-                    deq.push_front(mp(cur.fs + dx[i], cur.sc + dy[i]));
-                    cost[cur.fs + dx[i]][cur.sc + dy[i]] = cost[cur.fs][cur.sc];
+                    deq.push_front(next);
+                    cost[next.fs][next.sc] = cost[cur.fs][cur.sc];
                 }
             }
         }
