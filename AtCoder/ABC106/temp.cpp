@@ -19,6 +19,7 @@
 #include <stack>
 #include <regex>
 #include <tuple>
+#include <iomanip>
 
 #define int long long
 #define REP(i,a,n) for(int i=a;i<n;++i)
@@ -30,50 +31,68 @@
 #define mp make_pair
 #define fs first
 #define sc second
-#define mod 1000000007
 #define show(n) cerr<<#n<<" = "<<n<<endl
 #define showp(n) cerr<<n.fs<<", "<<n.sc<<endl
 #define shows(n) for(auto z:n){cerr<<z<<", ";}cerr<<endl
 #define showsp(n) for(auto z:n){cerr<<z.fs<<" "<<z.sc<<", "}cerr<<endl
 
-#define yes printf("Yes\n")
-#define no printf("No\n")
+#define yes puts("Yes")
+#define no puts("No")
 #define case(i) printf("Case #%lld: ",i)
 
 using namespace std;
 
-using ull=unsigned long long;
 using vi=vector<int>;
 using pint=pair<int,int>;
 
-const int INF=1LL<<55;
+inline void io(){cin.tie(0);ios::sync_with_stdio(false);cout.tie(0);cout<<fixed<<setprecision(20);}
+template<typename T> inline void in(T &e){cin>>e;}
+template<typename T> inline void out(T e){cout<<e<<endl;}
 
-int n;
-vi vec;
-map<int,int> maap;
-int mx=-1;
-int ans=0;
+const int INF=1LL<<55;
+const int MOD=1000000007;
+const double EPS=1e-8;
+
+int n,m,q;
+vi s,g;
+
+int ans;
 
 signed main(){
-    cin.tie(0);
-    ios::sync_with_stdio(false);
-
-    cin>>n;
-    vec.resize(n);
-    rep(i,n){
-        cin>>vec[i];
-        maap[vec[i]]++;
-        mx=max(mx,vec[i]);
+    io();
+    cin>>n>>m>>q;
+    s.resize(n+1);
+    g.resize(n+1);
+    int l,r;
+    rep(i,m){
+        scanf("%lld %lld",&l,&r);
+        s[l]++;
+        g[r]--;
     }
 
-    for(auto i=maap.begin();i!=maap.end();++i){
-        if(i->second==i->first) continue;
-        else{
-            if(i->second>i->first) ans+=i->second-i->first;
-            else ans+=i->second;
+    while(q--){
+        ans=0;
+        stack<int> st;
+        scanf("%lld %lld",&l,&r);
+        REP(i,l,r+1){
+            if(s[i]>0){
+                rep(j,s[i]) st.push(1);
+            }
+            if(g[i]<0){
+                for(int x=abs(g[i]);x>0;x--){
+                    if(!st.empty()) {
+                        st.pop();
+                        ans++;
+                    }
+                    else break;
+                }
+            }
         }
+        out(ans);
     }
-    cout<<ans<<endl;
-
+    
+    shows(s);
+    shows(g);
+    
     return 0;
 }

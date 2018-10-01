@@ -1,3 +1,4 @@
+//#include "bits/stdc++.h"
 #include <iostream>
 #include <vector>
 #include <map>
@@ -11,7 +12,15 @@
 #include <set>
 #include <unordered_map>
 #include <unordered_set>
+#include <numeric>
+#include <complex>
+#include <bitset>
+#include <functional>
+#include <stack>
+#include <regex>
+#include <tuple>
 
+#define int long long
 #define REP(i,a,n) for(int i=a;i<n;++i)
 #define rep(i,n) REP(i,0,n)
 #define REV(i,a,n) for(int i=n;i>=a;--i)
@@ -23,44 +32,43 @@
 #define sc second
 #define mod 1000000007
 #define show(n) cerr<<#n<<" = "<<n<<endl
+#define showp(n) cerr<<n.fs<<", "<<n.sc<<endl
 #define shows(n) for(auto z:n){cerr<<z<<", ";}cerr<<endl
+#define showsp(n) for(auto z:n){cerr<<z.fs<<" "<<z.sc<<", "}cerr<<endl
 
-//ここからAtCoder向けdefine
-#define yes cout << "YES" << endl
-#define no cout << "NO" << endl
+#define yes printf("Yes\n")
+#define no printf("No\n")
+#define case(i) printf("Case #%lld: ",i)
 
 using namespace std;
 
-using ll = long long;
-using ull = unsigned long long;
-using vi = vector<int>;
-using pint = pair<int,int>;
+using ull=unsigned long long;
+using vi=vector<int>;
+using pint=pair<int,int>;
 
-const int INF = (1 << 30);
+const int INF = 1LL << 55;
 
-const int maxX=10;
-const int maxY=10;
+const int maxh=10,maxw=10;
 
 int h,w,t;
+int d[maxh][maxw];
+char f[maxh][maxw];
 
-char f[maxX][maxY];
-pint c[maxX][maxY];
-
-pint s,g;
-
-int main(){
+signed main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    cin>>h>>w>>t;
-    rep(i,h)
-        rep(j,w){
-            cin>>f[i][j];
-            if(f[i][j]=='S') s=mp(i,j);
-            if(f[i][j]=='G') g=mp(i,j);
-        }
+    fill(d[0],d[maxh],INF);
+    rep(i,maxh){
+        
+    }
 
-    int lo=1,hi=t;
+    cin>>h>>w>>t;
+    rep(i,h){
+        rep(i,w){
+            cin>>f[maxh][maxw];
+        }
+    }
 
     return 0;
 }

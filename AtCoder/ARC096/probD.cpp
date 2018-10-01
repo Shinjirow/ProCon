@@ -34,7 +34,7 @@
 #define show(n) cerr<<#n<<" = "<<n<<endl
 #define showp(n) cerr<<n.fs<<", "<<n.sc<<endl
 #define shows(n) for(auto z:n){cerr<<z<<", ";}cerr<<endl
-#define showsp(n) for(auto z:n){cerr<<z.fs<<" "<<z.sc<<", "}cerr<<endl
+#define showsp(n) for(auto z:n){cerr<<z.fs<<" "<<z.sc<<", ";}cerr<<endl
 
 #define yes printf("Yes\n")
 #define no printf("No\n")
@@ -48,29 +48,42 @@ using pint=pair<int,int>;
 
 const int INF=1LL<<55;
 
-int n;
-vi vec;
-map<int,int> maap;
-int mx=-1;
+int n,c;
+vector<pint> table;
+int a, b;
 int ans=0;
-
+vector<pint> cl,rcl;
 signed main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    cin>>n;
-    vec.resize(n);
+    cin>>n>>c;
+    if(n > 100){cout<<0<<endl;return 0;}
+
     rep(i,n){
-        cin>>vec[i];
-        maap[vec[i]]++;
-        mx=max(mx,vec[i]);
+        cin>>a>>b;
+        table.pb(mp(a,b));
+        cl.pb(mp(a,b));
+    }
+    REP(i,1,cl.size()){
+        cl[i].sc+=cl[i-1].sc;
+    }
+    REV(i,0,table.size()-1){
+        rcl.pb(table[i]);
+    }
+    REP(i,1,rcl.size()){
+        rcl[i].sc+=rcl[i-1].sc;
     }
 
-    for(auto i=maap.begin();i!=maap.end();++i){
-        if(i->second==i->first) continue;
-        else{
-            if(i->second>i->first) ans+=i->second-i->first;
-            else ans+=i->second;
+    /*
+    showsp(table);
+    showsp(cl);
+    showsp(rcl);*/
+
+    for(b=rcl.size()-1;b>=0;b--){
+        for(a=0;a<b;a++){
+            int d=min(2*cl[a].fs+(c-rcl[b].fs), cl[a].fs+2*(c-rcl[b].fs));
+            ans=max(ans,cl[a].sc+rcl[b].sc-d);
         }
     }
     cout<<ans<<endl;

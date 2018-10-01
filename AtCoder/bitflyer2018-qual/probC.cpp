@@ -48,30 +48,33 @@ using pint=pair<int,int>;
 
 const int INF=1LL<<55;
 
-int n;
+int n,d;
 vi vec;
-map<int,int> maap;
-int mx=-1;
 int ans=0;
+
+int triangle(int a){
+    return a*(a-1)/2;
+}
 
 signed main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    cin>>n;
+    cin>>n>>d;
     vec.resize(n);
-    rep(i,n){
-        cin>>vec[i];
-        maap[vec[i]]++;
-        mx=max(mx,vec[i]);
+    rep(i, n) scanf("%lld", &vec[i]);
+
+    REP(j,1,n-1){
+        int l=lower_bound(all(vec),vec[j]-d)-vec.begin();
+        int r=upper_bound(all(vec),vec[j]+d)-vec.begin()-1;
+        ans+=(j-l)*(r-j);
     }
 
-    for(auto i=maap.begin();i!=maap.end();++i){
-        if(i->second==i->first) continue;
-        else{
-            if(i->second>i->first) ans+=i->second-i->first;
-            else ans+=i->second;
-        }
+    //show(ans);
+
+    rep(l,n-1){
+        int r=upper_bound(all(vec),vec[l]+d)-vec.begin()-1;
+        ans -=triangle(r-l);
     }
     cout<<ans<<endl;
 

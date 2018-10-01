@@ -50,9 +50,6 @@ const int INF=1LL<<55;
 
 int n;
 vi vec;
-map<int,int> maap;
-int mx=-1;
-int ans=0;
 
 signed main(){
     cin.tie(0);
@@ -60,20 +57,25 @@ signed main(){
 
     cin>>n;
     vec.resize(n);
-    rep(i,n){
+    rep(i,n)
         cin>>vec[i];
-        maap[vec[i]]++;
-        mx=max(mx,vec[i]);
-    }
 
-    for(auto i=maap.begin();i!=maap.end();++i){
-        if(i->second==i->first) continue;
-        else{
-            if(i->second>i->first) ans+=i->second-i->first;
-            else ans+=i->second;
+    sort(all(vec));
+
+    int tgt=vec[n-1];
+    int difft=tgt/2;
+    int diff;
+    int mn=INF;
+    int ansi=0;
+    rep(i,n){
+        diff=abs(difft-vec[i]);
+        if(mn>=diff){
+            ansi=i;
+            mn=diff;
         }
     }
-    cout<<ans<<endl;
+    if(n-1==ansi) ansi--;
+    cout<<vec[n-1]<<" "<<vec[ansi]<<endl;
 
     return 0;
 }

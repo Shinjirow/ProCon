@@ -57,12 +57,28 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
+const int max_n=1e5+10;
+const int max_m=1e9+10;
 
+int dp[max_n][2];
+int n,m;
+vi yakusu;
+
+void waru(int n){
+    REP(i,1,n/2+1){
+        if(n%i==0) yakusu.pb(i);
+    }
+    yakusu.pb(n);
+}
 
 signed main(){
     io();
 
+    in(n,m);
+    waru(m);
+    REP(i,1,n){
 
+    }
 
     return 0;
 }

@@ -49,29 +49,30 @@ using pint=pair<int,int>;
 const int INF=1LL<<55;
 
 int n;
-vi vec;
-map<int,int> maap;
-int mx=-1;
-int ans=0;
+int a,b;
+
+int ans=INF;
+
+int tmp;
+
+int x(int x){
+    int ret=0;
+    while(x!=0){
+        ret+=(x%10);
+        x/=10;
+    }
+    return ret;
+}
 
 signed main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
     cin>>n;
-    vec.resize(n);
-    rep(i,n){
-        cin>>vec[i];
-        maap[vec[i]]++;
-        mx=max(mx,vec[i]);
-    }
-
-    for(auto i=maap.begin();i!=maap.end();++i){
-        if(i->second==i->first) continue;
-        else{
-            if(i->second>i->first) ans+=i->second-i->first;
-            else ans+=i->second;
-        }
+    for(a=1, b=n-1;b>=1;a++,b--){
+        tmp=x(a);
+        tmp+=x(b);
+        ans=min(tmp,ans);
     }
     cout<<ans<<endl;
 

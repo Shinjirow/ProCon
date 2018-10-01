@@ -46,34 +46,28 @@ using ull=unsigned long long;
 using vi=vector<int>;
 using pint=pair<int,int>;
 
-const int INF=1LL<<55;
+const int INF = 1LL << 55;
 
-int n;
-vi vec;
-map<int,int> maap;
-int mx=-1;
-int ans=0;
+int n,p;
+bool odd=false;
+int a;
 
 signed main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    cin>>n;
-    vec.resize(n);
+    cin>>n>>p;
     rep(i,n){
-        cin>>vec[i];
-        maap[vec[i]]++;
-        mx=max(mx,vec[i]);
+        cin>>a;
+        if(a%2!=0) odd=true;
     }
 
-    for(auto i=maap.begin();i!=maap.end();++i){
-        if(i->second==i->first) continue;
-        else{
-            if(i->second>i->first) ans+=i->second-i->first;
-            else ans+=i->second;
-        }
+    if(!odd){
+        if(p==0) cout<<(1LL<<n)<<endl;
+        else cout<<0<<endl;
+    }else{
+        cout<<(1LL<<(n-1))<<endl;
     }
-    cout<<ans<<endl;
-
+    
     return 0;
 }

@@ -19,6 +19,7 @@
 #include <stack>
 #include <regex>
 #include <tuple>
+#include <iomanip>
 
 #define int long long
 #define REP(i,a,n) for(int i=a;i<n;++i)
@@ -30,50 +31,69 @@
 #define mp make_pair
 #define fs first
 #define sc second
-#define mod 1000000007
 #define show(n) cerr<<#n<<" = "<<n<<endl
 #define showp(n) cerr<<n.fs<<", "<<n.sc<<endl
 #define shows(n) for(auto z:n){cerr<<z<<", ";}cerr<<endl
 #define showsp(n) for(auto z:n){cerr<<z.fs<<" "<<z.sc<<", "}cerr<<endl
 
-#define yes printf("Yes\n")
-#define no printf("No\n")
+#define yes puts("Yes")
+#define no puts("No")
 #define case(i) printf("Case #%lld: ",i)
 
 using namespace std;
 
-using ull=unsigned long long;
 using vi=vector<int>;
 using pint=pair<int,int>;
 
+inline void io(){cin.tie(0);ios::sync_with_stdio(false);cout.tie(0);cout<<fixed<<setprecision(20);}
+inline int  in(){int n;scanf("%lld",&n);return n;}
+template<typename T> inline void out(T n){cout<<n<<endl;}
+
 const int INF=1LL<<55;
+const int MOD=1000000007;
+const double EPS=1e-8;
 
-int n;
+int sz,g;
 vi vec;
-map<int,int> maap;
-int mx=-1;
-int ans=0;
+vi bonus;
+int min_ans=INF;
 
-signed main(){
-    cin.tie(0);
-    ios::sync_with_stdio(false);
+#define MAX_V 1010
 
-    cin>>n;
-    vec.resize(n);
-    rep(i,n){
-        cin>>vec[i];
-        maap[vec[i]]++;
-        mx=max(mx,vec[i]);
-    }
+struct edge{
+    int to;
+    int cost;
+};
 
-    for(auto i=maap.begin();i!=maap.end();++i){
-        if(i->second==i->first) continue;
-        else{
-            if(i->second>i->first) ans+=i->second-i->first;
-            else ans+=i->second;
+int V;
+vector<edge>G[MAX_V];
+int d[MAX_V];
+
+void dijkstra(int s){
+    priority_queue<pint,vector<pint>,greater<pint> > que;
+    fill(d,d+V,INF);
+    d[s]=0;
+
+    que.push(pint(0,s));
+
+    while(!que.empty()){
+        pint p=que.top();que.pop();
+        int v=p.second;
+        if(d[v]<p.first) continue;
+        for(int i=0;i<G[v].size();i++){
+            edge e=G[v][i];
+            if(d[e.to]>d[v]+e.cost){
+                d[e.to]=d[v]+e.cost;
+                que.push(pint(d[e.to],e.to));
+            }
         }
     }
-    cout<<ans<<endl;
+}
+
+signed main(){
+    io();
+    cin>>sz>>g;
+    
 
     return 0;
 }

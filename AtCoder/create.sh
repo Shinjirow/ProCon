@@ -28,3 +28,5 @@ else
 fi
 cp ./template/Makefile ./${NAME}
 touch ./${NAME}/input.txt
+
+cd ${NAME}

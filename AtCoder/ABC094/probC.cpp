@@ -47,33 +47,37 @@ using vi=vector<int>;
 using pint=pair<int,int>;
 
 const int INF=1LL<<55;
-
 int n;
-vi vec;
-map<int,int> maap;
-int mx=-1;
-int ans=0;
 
 signed main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
     cin>>n;
-    vec.resize(n);
+    vi vec(n);
+    vi sorted(n);
     rep(i,n){
         cin>>vec[i];
-        maap[vec[i]]++;
-        mx=max(mx,vec[i]);
+        sorted[i]=vec[i];
     }
-
-    for(auto i=maap.begin();i!=maap.end();++i){
-        if(i->second==i->first) continue;
-        else{
-            if(i->second>i->first) ans+=i->second-i->first;
-            else ans+=i->second;
+    sort(rall(sorted));
+    int vl,vr;
+    vr=sorted[n/2];
+    vl=sorted[n/2 - 1];
+    //cout<<vr<<" " <<vl<<endl;
+    if(vr==vl){
+        rep(i,n) cout<<vr<<endl;
+    }else{
+        double d=((double)vl+(double)vr)/2;
+        show(d);
+        rep(i,n){
+            if(vec[i] < d){
+                cout<<vl<<endl;
+            }else{
+                cout<<vr<<endl;
+            }
         }
     }
-    cout<<ans<<endl;
 
     return 0;
 }

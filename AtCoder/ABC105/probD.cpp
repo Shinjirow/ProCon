@@ -19,6 +19,7 @@
 #include <stack>
 #include <regex>
 #include <tuple>
+#include <iomanip>
 
 #define int long long
 #define REP(i,a,n) for(int i=a;i<n;++i)
@@ -30,50 +31,61 @@
 #define mp make_pair
 #define fs first
 #define sc second
-#define mod 1000000007
 #define show(n) cerr<<#n<<" = "<<n<<endl
 #define showp(n) cerr<<n.fs<<", "<<n.sc<<endl
 #define shows(n) for(auto z:n){cerr<<z<<", ";}cerr<<endl
 #define showsp(n) for(auto z:n){cerr<<z.fs<<" "<<z.sc<<", "}cerr<<endl
 
-#define yes printf("Yes\n")
-#define no printf("No\n")
+#define yes puts("Yes")
+#define no puts("No")
 #define case(i) printf("Case #%lld: ",i)
 
 using namespace std;
 
-using ull=unsigned long long;
 using vi=vector<int>;
 using pint=pair<int,int>;
 
-const int INF=1LL<<55;
+inline void io(){cin.tie(0);ios::sync_with_stdio(false);cout.tie(0);cout<<fixed<<setprecision(20);}
+template<typename T> inline void in(T &e){cin>>e;}
+template<typename T> inline void out(T e){cout<<e<<endl;}
 
-int n;
-vi vec;
+const int INF=1LL<<55;
+const int MOD=1000000007;
+const double EPS=1e-8;
+
+int n,m;
+vi box;
+vi ruiwa;
 map<int,int> maap;
-int mx=-1;
-int ans=0;
 
 signed main(){
-    cin.tie(0);
-    ios::sync_with_stdio(false);
+    io();
 
-    cin>>n;
-    vec.resize(n);
-    rep(i,n){
-        cin>>vec[i];
-        maap[vec[i]]++;
-        mx=max(mx,vec[i]);
+    cin>>n>>m;
+    box.resize(n);
+    ruiwa.resize(n+1);
+    rep(i,n) {
+        cin>>box[i];
+        ruiwa[i+1]=box[i];
     }
+    REP(i,1,n) ruiwa[i+1]+=ruiwa[i];
+    rep(i,n+1) maap[ruiwa[i]%m]++;
+    
+    int ans=0;
+    for(auto e : maap){
+        //if(e.second<2) continue;
+        ans+=(e.second*(e.second-1))/2;
+    }
+    out(ans);
+    /*
+    ans=0;
 
-    for(auto i=maap.begin();i!=maap.end();++i){
-        if(i->second==i->first) continue;
-        else{
-            if(i->second>i->first) ans+=i->second-i->first;
-            else ans+=i->second;
-        }
-    }
-    cout<<ans<<endl;
+    rep(l,n+1)
+        REP(r,l+1,n+1)
+            if((ruiwa[r]-ruiwa[l])%m==0) ans++;
+        
+    out(ans);
+    */
 
     return 0;
 }

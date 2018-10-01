@@ -32,7 +32,7 @@
 #define sc second
 #define show(...) cerr<<#__VA_ARGS__<<" = ";_DEBUG(__VA_ARGS__)
 #define shows(n) for(auto z:n){cerr<<z<<", ";}cerr<<endl
-#define showslr(n,l,r) cerr<<#n<<" = ";for(int i=l;i<r;i++){cerr<<n[i]<<", ";}cerr<<endl //[l, r)
+#define showslr(n,l,r) cerr<<#n<<" = ";REP(i,l,r){cerr<<n[i]<<", ";}cerr<<endl //[l, r)
 
 #define yes puts("Yes")
 #define no puts("No")
@@ -57,12 +57,14 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-
+vi vec(3);
 
 signed main(){
     io();
 
-
+    rep(i,3) in(vec[i]);
+    sort(rall(vec));
+    out(vec[0]*10+vec[1]+vec[2]);
 
     return 0;
 }

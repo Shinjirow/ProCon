@@ -57,11 +57,19 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-
+int a,b,c,s;
 
 signed main(){
     io();
-
+    in(a,b,c,s);
+    int l=a+b+c;
+    int r=l+3;
+    //show(l,r);
+    if(l<=s&&s<=r){
+        yes;
+    }else{
+        no;
+    }
 
 
     return 0;

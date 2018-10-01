@@ -57,12 +57,27 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-
+int n,m,a,b;
+vi mikan;
 
 signed main(){
     io();
 
-
+    in(n,m,a,b);
+    mikan.resize(n,b);
+    int l,r;
+    rep(i,m){
+        in(l,r);
+        l--;r--;
+        REP(j,l,r+1){
+            mikan[j]=a;
+        }
+    }
+    int ans=0;
+    for(auto e:mikan){
+        ans+=e;
+    }
+    out(ans);
 
     return 0;
 }

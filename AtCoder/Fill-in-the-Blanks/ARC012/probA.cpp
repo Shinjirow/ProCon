@@ -48,32 +48,30 @@ using pint=pair<int,int>;
 
 const int INF=1LL<<55;
 
-int n;
-vi vec;
-map<int,int> maap;
-int mx=-1;
-int ans=0;
+string str;
 
 signed main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    cin>>n;
-    vec.resize(n);
-    rep(i,n){
-        cin>>vec[i];
-        maap[vec[i]]++;
-        mx=max(mx,vec[i]);
+    cin>>str;
+    if (str == "Monday"){
+        puts("5");
+    }
+    else if (str == "Tuesday"){
+        puts("4");
+    }
+    else if (str == "Wednesday"){
+        puts("3");
+    }
+    else if (str == "Thursday"){
+        puts("2");
+    }
+    else if (str == "Friday"){
+        puts("1");
+    }else{
+        puts("0");
     }
 
-    for(auto i=maap.begin();i!=maap.end();++i){
-        if(i->second==i->first) continue;
-        else{
-            if(i->second>i->first) ans+=i->second-i->first;
-            else ans+=i->second;
-        }
-    }
-    cout<<ans<<endl;
-
-    return 0;
+        return 0;
 }

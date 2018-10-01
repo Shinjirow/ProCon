@@ -48,32 +48,37 @@ using pint=pair<int,int>;
 
 const int INF=1LL<<55;
 
+vector<bool> IsPrime;
+vi pn;
+
 int n;
-vi vec;
-map<int,int> maap;
-int mx=-1;
-int ans=0;
+
+void sieve(size_t max){
+    if(max+1 > IsPrime.size()){
+        IsPrime.resize(max+1,true);
+    } 
+    IsPrime[0] = false;
+    IsPrime[1] = false;
+
+    for(size_t i=2; i*i<=max; ++i)
+        if(IsPrime[i])
+            for(size_t j=2; i*j<=max; ++j)
+                IsPrime[i*j] = false;
+}
 
 signed main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
+    sieve(277800);
+    REP(i,1,55556) if(IsPrime[i]&&i%5==1) pn.pb(i);
+
     cin>>n;
-    vec.resize(n);
+
     rep(i,n){
-        cin>>vec[i];
-        maap[vec[i]]++;
-        mx=max(mx,vec[i]);
+        cout<<pn[i];
+        if(i+1!=n) cout<<" ";
     }
-
-    for(auto i=maap.begin();i!=maap.end();++i){
-        if(i->second==i->first) continue;
-        else{
-            if(i->second>i->first) ans+=i->second-i->first;
-            else ans+=i->second;
-        }
-    }
-    cout<<ans<<endl;
-
+    cout<<endl;
     return 0;
 }

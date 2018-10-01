@@ -57,12 +57,42 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-
+string s,t;
+map<char,char> src,tgt;
 
 signed main(){
     io();
 
-
+    in(s,t);
+    int cnt=0;
+    rep(i,s.size()){
+        //show(i,s[i],src[s[i]]);
+        if(src[s[i]]){
+            s[i]=src[s[i]];
+        }else{
+            src[s[i]]='a'+cnt;
+            s[i]='a'+cnt;
+            cnt++;
+        }
+    }
+    //show(s);
+    cnt=0;
+    rep(i,t.size()){
+        //show(i,t[i],tgt[t[i]]);
+        if(tgt[t[i]]){
+            t[i]=tgt[t[i]];
+        }else{
+            tgt[t[i]]='a'+cnt;
+            t[i]='a'+cnt;
+            cnt++;
+        }
+    }
+    show(s,t);
+    if(s==t){
+        yes;
+    }else{
+        no;
+    }
 
     return 0;
 }

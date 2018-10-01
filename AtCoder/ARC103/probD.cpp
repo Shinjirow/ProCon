@@ -57,12 +57,63 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
+int n;
+vector<pint> vec;
+vi dist;
+int distmax=-1;
 
+void pr(int i){
+    int distx=vec[i].first;
+    int disty=vec[i].second;
+    if(distx<0){
+        rep(i,abs(distx)){
+            printf("L");
+        }
+    }else if(distx>0){
+        rep(i,abs(distx)){
+            printf("R");
+        }
+    }
+
+    if(disty<0){
+        rep(i,abs(disty)){
+            printf("D");
+        }
+    }else if(disty>0){
+        rep(i,abs(disty)){
+            printf("U");
+        }
+    }
+    int subt=distmax-dist[i];
+    rep(i,subt/2){
+        printf("LR");
+    }
+    puts("");
+}
 
 signed main(){
     io();
-
-
+    in(n);
+    vec.resize(n);
+    dist.resize(n);
+    rep(i,n){
+        in(vec[i].first,vec[i].second);
+        dist[i]=abs(vec[i].first)+abs(vec[i].second);
+    }
+    REP(i,1,n){
+        if((dist[i]&1)!=(dist[i-1]&1)){
+            out(-1);
+            return 0;
+        }
+        distmax=max(distmax,dist[i]);
+    }
+    out(distmax);
+    rep(i,distmax){
+        printf("%d ",1);
+    }puts("");
+    rep(i,n){
+        pr(i);
+    }
 
     return 0;
 }

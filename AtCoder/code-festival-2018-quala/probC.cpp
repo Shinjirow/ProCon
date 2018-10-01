@@ -57,12 +57,60 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
+int n,k;
+vi vec;
+vi howmany;
+vi zeros;
+int sum=0;
+vi ans(5000,0);
+
+int nCr(int n, int r) {
+    if (r==0) {
+        return 1;
+    }
+    
+    return (n-r+1)*nCr(n,r-1)/r;
+}
 
 
 signed main(){
     io();
+    in(n,k);
+    if(k==0){
+        out(1);
+        return 0;
+    }
 
+    vec.resize(n);
+    howmany.resize(n);
+    rep(i,n){
+        in(vec[i]);
+        int res=0;
+        while(vec[i]){
+            vec[i]/=2;
+            res++;
+        }
+        howmany[i]=res;
+        sum+=res;
+    }
+    shows(howmany);
+    show(sum);
+    zeros.resize(sum+1,0);
+    for(auto e:howmany) zeros[e]++;
+    REP(i,1,sum+1) zeros[i]+=zeros[i-1];
+    ans[0]=1;
+    ans[1]=n-(zeros[0]>0?zeros[0]:0);
+    REP(i,2,sum){
+        ans[i]=(ans[i-1]*n-zeros[i]-(ans[i-1]-2)*(ans[i-1]-1)/2) % MOD;
+        show(i,ans[i],ans[i-1],n,zeros[i],(ans[i-1]-2)*(ans[i-1]-1)/2,ans[i-1]*n);
+    }
+    ans[sum]=1;
+    showslr(ans,0,sum+1);
+    REP(i,1,ans.size())ans[i]+=ans[i-1];
+    showslr(ans,0,sum+1);
+    int x=zeros[0]>0?0:1;
+    out(ans[k>=sum?sum:k]-x);
 
-
+    
     return 0;
 }

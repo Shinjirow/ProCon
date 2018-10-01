@@ -48,32 +48,39 @@ using pint=pair<int,int>;
 
 const int INF=1LL<<55;
 
-int n;
-vi vec;
-map<int,int> maap;
-int mx=-1;
-int ans=0;
+char grid[52][52];
+
+int h,w;
+
+int dx[4]={1,0,-1,0},dy[4]={0,1,0,-1};
 
 signed main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
-
-    cin>>n;
-    vec.resize(n);
-    rep(i,n){
-        cin>>vec[i];
-        maap[vec[i]]++;
-        mx=max(mx,vec[i]);
-    }
-
-    for(auto i=maap.begin();i!=maap.end();++i){
-        if(i->second==i->first) continue;
-        else{
-            if(i->second>i->first) ans+=i->second-i->first;
-            else ans+=i->second;
+    cin>>h>>w;
+    REP(i,1,h+1){
+        REP(j,1,w+1){
+            cin>>grid[i][j];
         }
     }
-    cout<<ans<<endl;
+
+    bool f;
+    REP(i,1,h+1){
+        REP(j,1,w+1){
+            if(grid[i][j]=='#'){
+                f=false;
+                rep(k,4){
+                    if(grid[i+dx[k]][j+dy[k]]=='#') f=true;
+                }
+                if(!f){
+                    no;
+                    return 0;
+                }
+            }
+        }
+    }
+
+    yes;
 
     return 0;
 }

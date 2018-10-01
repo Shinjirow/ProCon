@@ -1,5 +1,5 @@
-//#include "bits/stdc++.h"
-#include <iostream>
+#include "bits/stdc++.h"
+/*#include <iostream>
 #include <vector>
 #include <map>
 #include <utility>
@@ -19,7 +19,8 @@
 #include <stack>
 #include <regex>
 #include <tuple>
-
+#include <iomanip>
+*/
 #define int long long
 #define REP(i,a,n) for(int i=a;i<n;++i)
 #define rep(i,n) REP(i,0,n)
@@ -30,50 +31,65 @@
 #define mp make_pair
 #define fs first
 #define sc second
-#define mod 1000000007
 #define show(n) cerr<<#n<<" = "<<n<<endl
 #define showp(n) cerr<<n.fs<<", "<<n.sc<<endl
 #define shows(n) for(auto z:n){cerr<<z<<", ";}cerr<<endl
 #define showsp(n) for(auto z:n){cerr<<z.fs<<" "<<z.sc<<", "}cerr<<endl
 
-#define yes printf("Yes\n")
-#define no printf("No\n")
+#define yes puts("Yes")
+#define no puts("No")
 #define case(i) printf("Case #%lld: ",i)
 
 using namespace std;
 
-using ull=unsigned long long;
 using vi=vector<int>;
 using pint=pair<int,int>;
 
+inline void io(){cin.tie(0);ios::sync_with_stdio(false);cout.tie(0);cout<<fixed<<setprecision(20);}
+inline int   in(){int n;scanf("%lld",&n);return n;}
+inline void out(int n){printf("%lld\n",n);}
+
 const int INF=1LL<<55;
+const int MOD=1000000007;
+const double EPS=1e-8;
 
-int n;
-vi vec;
-map<int,int> maap;
-int mx=-1;
-int ans=0;
+int h,w,c;
 
-signed main(){
-    cin.tie(0);
-    ios::sync_with_stdio(false);
+int grid[12][12];
+bool did[12][12];
 
-    cin>>n;
-    vec.resize(n);
-    rep(i,n){
-        cin>>vec[i];
-        maap[vec[i]]++;
-        mx=max(mx,vec[i]);
-    }
+void dfs(){
 
-    for(auto i=maap.begin();i!=maap.end();++i){
-        if(i->second==i->first) continue;
-        else{
-            if(i->second>i->first) ans+=i->second-i->first;
-            else ans+=i->second;
+}
+
+void input(){
+    REP(i,1,h+1) REP(j,1,w+1) scanf("%lld",&grid[i][j]);
+}
+
+void solve(){
+    REP(i,1,7){
+        if(i==grid[1][1]) continue;
+        REP(j,1,7){
+            if(i==j) continue;
+            REP(k,1,7){
+                if(j==k) continue;
+                REP(l,1,7){
+                    if(k==l) continue;
+                    REP(m,1,7){
+
+                    }
+                }
+            }
         }
     }
-    cout<<ans<<endl;
+}
 
+signed main() {
+    io();
+    while(cin>>h>>w>>c,c){
+        input();
+        solve();
+    }
+    
     return 0;
 }

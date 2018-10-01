@@ -42,37 +42,43 @@
 
 using namespace std;
 
-using ull=unsigned long long;
 using vi=vector<int>;
 using pint=pair<int,int>;
 
 const int INF=1LL<<55;
 
-int n;
-vi vec;
-map<int,int> maap;
-int mx=-1;
+int n,c,k;
+vector<pint> a;
 int ans=0;
 
 signed main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
 
-    cin>>n;
-    vec.resize(n);
+    cin>>n>>c>>k;
+
+    int x;
     rep(i,n){
-        cin>>vec[i];
-        maap[vec[i]]++;
-        mx=max(mx,vec[i]);
+        cin>>x;
+        a.pb(mp(x, x+k));
     }
 
-    for(auto i=maap.begin();i!=maap.end();++i){
-        if(i->second==i->first) continue;
-        else{
-            if(i->second>i->first) ans+=i->second-i->first;
-            else ans+=i->second;
+    sort(all(a));
+
+    int bust=a[0].sc;
+    int bussz=0;
+    
+    rep(i,n){
+        if(bussz==c || a[i].fs > bust){
+            bust=a[i].sc;
+            bussz=1;
+            ans++;
+        }else{
+            bussz++;
         }
     }
+    if(bussz!=0) ans++;
+    
     cout<<ans<<endl;
 
     return 0;

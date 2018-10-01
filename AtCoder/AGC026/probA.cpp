@@ -19,6 +19,7 @@
 #include <stack>
 #include <regex>
 #include <tuple>
+#include <iomanip>
 
 #define int long long
 #define REP(i,a,n) for(int i=a;i<n;++i)
@@ -30,50 +31,46 @@
 #define mp make_pair
 #define fs first
 #define sc second
-#define mod 1000000007
 #define show(n) cerr<<#n<<" = "<<n<<endl
 #define showp(n) cerr<<n.fs<<", "<<n.sc<<endl
 #define shows(n) for(auto z:n){cerr<<z<<", ";}cerr<<endl
 #define showsp(n) for(auto z:n){cerr<<z.fs<<" "<<z.sc<<", "}cerr<<endl
 
-#define yes printf("Yes\n")
-#define no printf("No\n")
+#define yes puts("Yes")
+#define no puts("No")
 #define case(i) printf("Case #%lld: ",i)
 
 using namespace std;
 
-using ull=unsigned long long;
 using vi=vector<int>;
 using pint=pair<int,int>;
 
+inline void io(){cin.tie(0);ios::sync_with_stdio(false);cout.tie(0);cout<<fixed<<setprecision(20);}
+inline int  in(){int n;scanf("%lld",&n);return n;}
+inline void out(int n){printf("%lld\n",n);}
+
 const int INF=1LL<<55;
+const int MOD=1000000007;
+const double EPS=1e-8;
 
 int n;
 vi vec;
-map<int,int> maap;
-int mx=-1;
-int ans=0;
 
 signed main(){
-    cin.tie(0);
-    ios::sync_with_stdio(false);
-
+    io();
     cin>>n;
     vec.resize(n);
-    rep(i,n){
-        cin>>vec[i];
-        maap[vec[i]]++;
-        mx=max(mx,vec[i]);
-    }
+    rep(i,n) cin>>vec[i];
 
-    for(auto i=maap.begin();i!=maap.end();++i){
-        if(i->second==i->first) continue;
-        else{
-            if(i->second>i->first) ans+=i->second-i->first;
-            else ans+=i->second;
+    int ans=0;
+
+    REP(i,1,n){
+        if(vec[i]==vec[i-1]){
+            ans++;
+            i++;
         }
     }
-    cout<<ans<<endl;
+    out(ans);
 
     return 0;
 }

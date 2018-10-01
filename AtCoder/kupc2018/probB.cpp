@@ -57,11 +57,51 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
+int h,w;
+char grid[12][12];
+pint s;
+vector<string> commands(3);
+bool res=false;
+string result;
 
+void dfs(pint cur,string command){
+    if(res) return;
+    if(cur.fs==1){
+        res=true;
+        result=command;
+        return;
+    }
+    REP(i,-1,2){
+        pint next={cur.fs-1,cur.sc+i};
+        if(grid[next.fs][next.sc]=='.'){
+            dfs(next,command+commands[i+1]);
+        }
+    }
+}
 
 signed main(){
     io();
-
+    in(h,w);
+    fill(grid[0],grid[11],'x');
+    commands[0]="L";
+    commands[1]="S";
+    commands[2]="R";
+    REP(y,1,h+1){
+        REP(x,1,w+1){
+            in(grid[y][x]);
+            if(grid[y][x]=='s'){
+                s.fs=y;s.sc=x;
+            }
+        }
+    }
+    /*
+    rep(i,12){
+        rep(j,12){
+            printf("%c",grid[i][j]);
+        }puts("");
+    }*/
+    dfs(s,"");
+    out(res?result:"impossible");
 
 
     return 0;

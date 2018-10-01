@@ -57,12 +57,56 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
+char grid[9][9];
 
+bool check(){
+    
+    rep(y,9){
+        int l=0;
+        rep(x,9){
+            l=(grid[y][x]=='.')?l+1:0;
+            if(l>=7) return false;
+        }
+    }
+    rep(x,9){
+        int l=0;
+        rep(y,9){
+            l=(grid[y][x]=='.')?l+1:0;
+            if(l>=7) return false;
+        }
+    }
+    rep(sz,3){
+        int l=0,r=0;
+        int a=0,b=0;
+        int c=0,d=0;
+        rep(i,9-sz){
+            if(sz==0){
+                l=(grid[i][i]=='.')?l+1:0;
+                r=(grid[8-i][i]=='.')?r+1:0;
+            }
+            if(sz!=0){
+                a=(grid[i+sz][i]=='.')?a+1:0;
+                b=(grid[i][i+sz]=='.')?b+1:0;
+                c=(grid[8-i-sz][i]=='.')?c+1:0;
+                d=(grid[8-i][i+sz]=='.')?d+1:0;
+            }
+            if(max({l,r,a,b,c,d})>=7) {
+                show(a,b,c,d,l,r);
+                return false;
+            }
+        }
+    }
+    return true;
+}
 
 signed main(){
     io();
-
-
+    rep(y,9){
+        rep(x,9){
+            in(grid[y][x]);
+        }
+    }
+    out(check());
 
     return 0;
 }

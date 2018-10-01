@@ -57,12 +57,28 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-
+int n,m,x,y,xn,ym;
 
 signed main(){
     io();
 
-
+    in(n,m,x,y);
+    xn=x;ym=y;
+    int a;
+    rep(i,n){
+        in(a);
+        xn=max(a,xn);
+    }
+    rep(i,m){
+        in(a);
+        ym=min(a,ym);
+    }
+    //show(x,y,xn,ym);
+    if(x>=y||xn>=y||ym<=x||ym<=xn){
+        puts("War");
+    }else{
+        puts("No War");
+    }
 
     return 0;
 }

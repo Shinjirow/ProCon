@@ -48,32 +48,43 @@ using pint=pair<int,int>;
 
 const int INF=1LL<<55;
 
-int n;
-vi vec;
-map<int,int> maap;
-int mx=-1;
-int ans=0;
+int a,b,c;
+int x,y;
+
+int kane = 0;
+
 
 signed main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
-
-    cin>>n;
-    vec.resize(n);
-    rep(i,n){
-        cin>>vec[i];
-        maap[vec[i]]++;
-        mx=max(mx,vec[i]);
-    }
-
-    for(auto i=maap.begin();i!=maap.end();++i){
-        if(i->second==i->first) continue;
-        else{
-            if(i->second>i->first) ans+=i->second-i->first;
-            else ans+=i->second;
+    cin>>a>>b>>c>>x>>y;
+    c *= 2;
+    if(c < a + b){
+        if(x > y){
+            kane += c*y;
+            if(c < b){
+                kane += c*(x-y);
+            }else{
+                kane += a*(x-y);
+            }
+        }else if(x < y){
+            kane += c*x;
+            if(c < a){
+                kane += c*(y-x);
+            }else{
+                kane += b*(y-x);
+            }
+        }else{
+            kane += c * x;
+            cout<<kane<<endl;
+            return 0;
         }
+    }else{
+        kane += a*x;
+        kane += b*y;
     }
-    cout<<ans<<endl;
 
+    cout<<kane<<endl;
+    
     return 0;
 }
