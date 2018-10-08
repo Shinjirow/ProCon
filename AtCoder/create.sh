@@ -26,7 +26,7 @@ else
         cp ./template/template.cpp ./${NAME}/prob${array[i]}.cpp
     }
 fi
-cp ./template/Makefile ./${NAME}
+# cp ./template/Makefile ./${NAME}
 touch ./${NAME}/input.txt
 
 cd ${NAME}
