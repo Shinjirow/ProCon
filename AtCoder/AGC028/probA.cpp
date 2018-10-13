@@ -57,60 +57,62 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-int n;
+int n,m;
+string s,t;
 
-vi vec;
-map<int,int> a,b;
-int ans=0;
+map<int, int> prime_factor(int n){
+    map<int, int> ret;
+    for(int i = 2; i * i <= n; i++){
+        while(n % i == 0) {
+            ret[i]++;
+            n /= i;
+        }
+    }
+    if(n != 1) ret[n] = 1;
+    return ret;
+}
 
 signed main(){
     io();
-    in(n);
-    vec.resize(n);
-    rep(i,n) in(vec[i]);
 
+    in(n,m);
+    in(s);
+    in(t);
+    if(s[0]!=t[0]){
+        out(-1);
+        return 0;
+    }
+    map<int,int> np=prime_factor(n);
+    map<int,int> mp=prime_factor(m);
+    map<int,int> lcm;
+    for(auto e:np){
+        lcm[e.fs]=max(lcm[e.fs],e.sc);
+    }
+    for(auto e:mp){
+        lcm[e.fs]=max(lcm[e.fs],e.sc);
+    }
+    int res=1;
+    for(auto e:lcm){
+        res*=pow(e.fs,e.sc);
+        //show(e.fs,e.sc);
+    }
+    map<int,char> table;
     rep(i,n){
-        if(i&1){
-            a[vec[i]]++;
-        }else{
-            b[vec[i]]++;
+        table[i*res/n+1]=s[i];
+    }
+    rep(i,m){
+        if(!table[i*res/m+1]) continue;
+        if(table[i*res/m+1]!=t[i]){
+            out(-1);
+            return 0;
         }
-    }
-    int maxa=-1;
-    int nexta=0;
-    int val;
-    for(auto e:a){
-        if(maxa<e.second){
-            nexta=max(nexta,maxa);
-            maxa=e.second;
-            val=e.first;
-        }else if(nexta<e.second){
-            nexta=e.second;
-        }
-    }
-    int maxb=-1;
-    int nextb=0;
-    int var;
-    for(auto e:b){
-        if(maxb<e.second){
-            nextb=max(nextb,maxb);
-            maxb=e.second;
-            var=e.first;
-        }else if(nextb<e.second){
-            nextb=e.second;
-        }
-    }
-    //show(maxa,maxb,nexta,nextb);
-    //show(val,var);
-    if(val!=var){
-        ans=n/2-maxa+n/2-maxb;
-    }else{
-        int resa=n/2-maxb+n/2-nexta;
-        int resb=n/2-maxa+n/2-nextb;
-        //show(resa,resb);
-        ans=min(resa,resb);
-    }
-    out(ans);
+
+    }/*
+    for(auto e:table){
+        show(e.fs,e.sc);
+    }*/
+
+    out(res);
 
     return 0;
 }

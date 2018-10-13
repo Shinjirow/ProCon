@@ -58,59 +58,15 @@ const int MOD=1000000007;
 const double EPS=1e-8;
 
 int n;
-
-vi vec;
-map<int,int> a,b;
-int ans=0;
+vi a,cumsum;
 
 signed main(){
     io();
+    
     in(n);
-    vec.resize(n);
-    rep(i,n) in(vec[i]);
-
-    rep(i,n){
-        if(i&1){
-            a[vec[i]]++;
-        }else{
-            b[vec[i]]++;
-        }
-    }
-    int maxa=-1;
-    int nexta=0;
-    int val;
-    for(auto e:a){
-        if(maxa<e.second){
-            nexta=max(nexta,maxa);
-            maxa=e.second;
-            val=e.first;
-        }else if(nexta<e.second){
-            nexta=e.second;
-        }
-    }
-    int maxb=-1;
-    int nextb=0;
-    int var;
-    for(auto e:b){
-        if(maxb<e.second){
-            nextb=max(nextb,maxb);
-            maxb=e.second;
-            var=e.first;
-        }else if(nextb<e.second){
-            nextb=e.second;
-        }
-    }
-    //show(maxa,maxb,nexta,nextb);
-    //show(val,var);
-    if(val!=var){
-        ans=n/2-maxa+n/2-maxb;
-    }else{
-        int resa=n/2-maxb+n/2-nexta;
-        int resb=n/2-maxa+n/2-nextb;
-        //show(resa,resb);
-        ans=min(resa,resb);
-    }
-    out(ans);
+    rep(i,n) in(a[i]);
+    REP(i,1,n) cumsum[i]+=cumsum[i-1]+a[i];
+    
 
     return 0;
 }

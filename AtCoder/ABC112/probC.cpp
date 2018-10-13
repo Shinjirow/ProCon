@@ -53,16 +53,58 @@ template<typename H,typename... T>void in(H &a, T&... b){cin>>a;in(b...);}
 inline void out(){}
 template<typename H,typename... T> void out(H a, T... b){cout<<a<<endl;out(b...);}
 
+void RESIZE(int sz){}
+template<class H,class... T> void RESIZE(int sz,H &a,T&... b){
+    a.resize(sz);
+    RESIZE(sz,b...);
+}
+
 const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-
+int n;
+vi x,y,h;
 
 signed main(){
     io();
 
-
+    in(n);
+    RESIZE(n,x,y,h);
+    rep(i,n){
+        in(x[i],y[i],h[i]);
+    }
+    rep(j,101){
+        rep(i,101){
+            bool f=true;
+            int htmp=-1;
+            rep(k,n){
+                if(h[k]>0){
+                    int dx=abs(i-x[k]),dy=abs(j-y[k]);
+                    htmp=h[k]+dx+dy;
+                    break;
+                }
+            }
+            rep(k,n){
+                int dx=abs(i-x[k]),dy=abs(j-y[k]);
+                if(htmp-dx-dy<0){
+                    if(h[k]!=0){
+                        f=false;
+                        break;
+                    }
+                }else{
+                    if(htmp!=h[k]+dx+dy){
+                        f=false;
+                        break;
+                    }
+                }
+            }
+            if(f){
+                printf("%lld %lld %lld\n",i,j,htmp);
+                return 0;
+            }
+        }
+    }
 
     return 0;
 }

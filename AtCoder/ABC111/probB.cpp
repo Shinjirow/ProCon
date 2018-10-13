@@ -57,12 +57,18 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-
+int n;
 
 signed main(){
     io();
 
-
+    in(n);
+    for(int i=111;i<=999;i+=111){
+        if(n<=i){
+            out(i);
+            return 0;
+        }
+    }
 
     return 0;
 }
