@@ -62,12 +62,39 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
+int n;
+const int lim=201800;
 
+int dx[]={1,0,-1,0},dy[]={0,1,0,-1};
+int st[]={0,3,1,4,2};
+int res=0;
+vector<vector<char> > grid(1002,vector<char>(1002,'.'));
+vector<vector<bool> > g(1002,vector<bool>(1002,false));
 
 signed main(){
     io();
+    in(n);
+    
+    
+    REP(y,1,n+1){
+        for(int x=st[(y-1)%5]+1;x<n+1;x+=5){
+            grid[x][y]='X';
+            g[x][y]=true;
+            rep(i,4){
+                g[x+dx[i]][y+dy[i]]=true;
+            }
+        }
+    }
 
-
-
+    REP(y,1,n+1){
+        REP(x,1,n+1){
+            if(!g[x][y]){
+                printf("X");
+            }else{
+                printf("%c",grid[x][y]);
+            }
+        }puts("");
+    }
+    
     return 0;
 }

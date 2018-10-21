@@ -62,12 +62,22 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-
+int n,x;
+vi a,b;
+int res=0;
 
 signed main(){
     io();
-
-
+    in(n,x);
+    resz(n,a,b);
+    rep(i,n) {
+        in(a[i],b[i]);
+        res+=a[i]*b[i];
+    }
+    sort(rall(b));
+    //show(res);
+    res+=x*b[0];
+    out(res);
 
     return 0;
 }
