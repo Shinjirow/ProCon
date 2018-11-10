@@ -35,7 +35,7 @@
 
 #define yes puts("Yes")
 #define no puts("No")
-#define case(i) printf("Case #%lld: ",i)
+#define case(i) printf("Case #%lld:\n",i)
 
 using namespace std;
 
@@ -62,16 +62,47 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-string s;
+int t;
+
+void solve(){
+    int w,h;
+    in(w,h);
+    vector<vi> grid(w,vector<int>(h));
+    rep(y,h) rep(x,w) in(grid[x][y]);    
+    int ans=0;
+    rep(y,h){
+        rep(x,w-3){
+            ans=max(ans,grid[x][y]+grid[x+1][y]+grid[x+2][y]+grid[x+3][y]);
+        }
+    }
+    rep(x,w){
+        rep(y,h-3){
+            ans=max(ans,grid[x][y]+grid[x][y+1]+grid[x][y+2]+grid[x][y+3]);
+        }
+    }
+    rep(y,h-3){
+        rep(x,w-3){
+            //show(x,y);
+            ans=max(ans,grid[x][y]+grid[x+1][y+1]+grid[x+2][y+2]+grid[x+3][y+3]);
+        }
+    }
+    rep(y,h-3){
+        REPEAT(x,3,w,false){
+            //show(x,y);
+            ans=max(ans,grid[x][y]+grid[x-1][y+1]+grid[x-2][y+2]+grid[x-3][y+3]);
+        }
+    }
+    out(ans);
+}
 
 signed main(){
     io();
 
-    in(s);
-    if(s.size()==3){
-        reverse(all(s));
+    in(t);
+    rep(i,t){
+        case(i+1);
+        solve();
     }
-    out(s);
 
     return 0;
 }

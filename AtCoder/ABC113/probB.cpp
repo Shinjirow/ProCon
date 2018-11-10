@@ -62,16 +62,28 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-string s;
+int n;
+int t,a;
+vi h;
+int ans=0;
+double ansd=1e9;
 
 signed main(){
     io();
 
-    in(s);
-    if(s.size()==3){
-        reverse(all(s));
+    in(n);
+    in(t,a);
+    resz(n,h);
+    in(h);
+    rep(i,n){
+        double res=t-h[i]*0.006;
+        double d=fabs(a-res);
+        if(d<ansd){
+            ans=i+1;
+            ansd=d;
+        }
     }
-    out(s);
+    out(ans);
 
     return 0;
 }

@@ -35,7 +35,7 @@
 
 #define yes puts("Yes")
 #define no puts("No")
-#define case(i) printf("Case #%lld: ",i)
+#define case(i) printf("Case #%lld:\n",i)
 
 using namespace std;
 
@@ -62,16 +62,30 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-string s;
+int t;
+
+void solve(){
+    int n;
+    in(n);
+    vector<pair<int, pair<int,int> > > students(n);
+    rep(i,n){
+        in(students[i].second.second,students[i].first,students[i].second.first);
+        students[i].first=1010-students[i].first;
+    }
+    sort(all(students));
+    rep(i,n){
+        out(students[i].second.second);
+    }
+}
 
 signed main(){
     io();
 
-    in(s);
-    if(s.size()==3){
-        reverse(all(s));
+    in(t);
+    rep(i,t){
+        case(i+1);
+        solve();
     }
-    out(s);
 
     return 0;
 }

@@ -62,16 +62,13 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-string s;
+int a,b;
 
 signed main(){
     io();
 
-    in(s);
-    if(s.size()==3){
-        reverse(all(s));
-    }
-    out(s);
+    in(a,b);
+    out(a+b/2);
 
     return 0;
 }

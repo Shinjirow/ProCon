@@ -45,7 +45,7 @@ using pint=pair<int,int>;
 inline void io(){cin.tie(0);ios::sync_with_stdio(false);cout.tie(0);cout<<fixed<<setprecision(20);}
 
 template<class T> istream& operator >>(istream &is, vector<T> &v){for(T &e:v)is>>e;return is;}
-template<class T> ostream& operator <<(ostream &os, vector<T> v){os<<"{";for(T &e:v)os<<e<<(v.size()-(int)(&e-&v[0])>1?", ":"");os<<"}";return os;}
+template<class T> ostream& operator <<(ostream &os, vector<T> v){for(T &e:v)os<<e<<(v.size()-(int)(&e-&v[0])>1?" ":"");return os;}
 
 void _DEBUG(){}
 template<typename H,typename... T> void _DEBUG(H a,T...b){cerr<<a<<(sizeof...(b)?",":"\n");_DEBUG(b...);}
@@ -62,12 +62,21 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-
+int k;
+vi v(2);
 
 signed main(){
     io();
 
-
+    in(v,k);
+    rep(i,k){
+        if(v[i%2]&1){
+            v[i%2]--;
+        }
+        v[i%2]/=2;
+        v[(i+1)%2]+=v[i%2];
+    }
+    out(v);
 
     return 0;
 }

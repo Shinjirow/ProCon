@@ -62,16 +62,35 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-string s;
+int n,m;
+vector<map<int,int> > v;
+vector<pint> vp;
 
 signed main(){
     io();
 
-    in(s);
-    if(s.size()==3){
-        reverse(all(s));
+    in(n,m);
+    resz(n,v);
+    resz(m,vp);
+    rep(i,m){
+        int a,b;
+        in(a,b);
+        a--;
+        v[a][b]=i;
     }
-    out(s);
+    rep(i,n){
+        int j=1;
+        for(auto e:v[i]){
+            //printf("%06lld%06lld\n",i+1,j);
+            vp[e.sc].fs=i+1;
+            vp[e.sc].sc=j;
+            //show(e.fs,e.sc);
+            j++;
+        }
+    }
+    for(auto e:vp){
+        printf("%06lld%06lld\n",e.fs,e.sc);
+    }
 
     return 0;
 }

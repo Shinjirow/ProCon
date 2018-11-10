@@ -35,7 +35,7 @@
 
 #define yes puts("Yes")
 #define no puts("No")
-#define case(i) printf("Case #%lld: ",i)
+#define case(i) printf("Case #%lld:\n",i)
 
 using namespace std;
 
@@ -62,16 +62,45 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-string s;
+#define MAX_N 1000
+#define MAX_M 1000
+
+int T;
+int n, m;
+vector<char> s, t;
+
+int dp[MAX_N+1][MAX_M+1];
+
+void solve() {
+    
+    for (int i=0; i<n; ++i) {
+        for (int j=0; j<m; ++j) {
+            if (s[i] == t[j]) {
+                dp[i+1][j+1] = dp[i][j] + 1;
+            }
+            else {
+                dp[i+1][j+1] = max(dp[i][j+1], dp[i+1][j]);
+            }
+        }
+    }
+}
+
 
 signed main(){
     io();
+    
+    in(T);
+    rep(x,T){
+        case(x+1);
+        in(n,m);
+        resz(n,s);
+        resz(m,t);
+        in(s);
+        in(t);
+        solve();
+        out(n-dp[n][m]+m-dp[n][m]);
 
-    in(s);
-    if(s.size()==3){
-        reverse(all(s));
     }
-    out(s);
 
     return 0;
 }

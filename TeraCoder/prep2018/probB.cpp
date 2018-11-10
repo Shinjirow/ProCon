@@ -35,7 +35,7 @@
 
 #define yes puts("Yes")
 #define no puts("No")
-#define case(i) printf("Case #%lld: ",i)
+#define case(i) printf("Case #%lld:\n",i)
 
 using namespace std;
 
@@ -62,16 +62,34 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-string s;
+int t;
+
+void solve(){
+    string str;
+    int n;
+    bool has=false;
+    in(str);
+    in(n);
+    vector<string> sent(n);
+    rep(i,n) in(sent[i]);
+
+    rep(i,n){
+        if(sent[i].find(str)==0){
+            has=true;
+            out(sent[i].substr(str.size()+1));
+        }
+    }
+    if(!has) puts("EMPTY");
+}
 
 signed main(){
     io();
-
-    in(s);
-    if(s.size()==3){
-        reverse(all(s));
+    in(t);
+    rep(x,t){
+        case(x+1);
+        solve();
     }
-    out(s);
+
 
     return 0;
 }
