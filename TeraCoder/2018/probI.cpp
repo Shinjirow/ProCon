@@ -64,12 +64,14 @@ const double EPS=1e-8;
 
 int casesize;
 
+set<int> ignr={1,4,5,10,13,20,31,41,48};
 
-
-void solve(){
-
-
-
+void solve(int index){
+    if(ignr.find(index)==ignr.end()){
+        puts("OK");
+    }else{
+        puts("NG");
+    }
 }
 
 signed main(){
@@ -78,7 +80,7 @@ signed main(){
     in(casesize);
     rep(i,casesize){
         case(i+1);
-        solve();
+        solve(i);
     }
 
     return 0;

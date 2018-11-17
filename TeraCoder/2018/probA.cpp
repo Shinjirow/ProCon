@@ -67,9 +67,15 @@ int casesize;
 
 
 void solve(){
-
-
-
+    int x;
+    in(x);
+    if(x <= 2007 || x >= 2019){
+        puts("NG");
+    }else if(x >= 2018){
+        puts("ISE");
+    }else{
+        puts("CSE");
+    }
 }
 
 signed main(){

@@ -64,12 +64,26 @@ const double EPS=1e-8;
 
 int casesize;
 
-
+int tgt[]={5,7,5};
 
 void solve(){
-
-
-
+    vector<string> vs(3);
+    in(vs);
+    rep(i,vs.size()){
+        // show(vs[i].size(), tgt[i]);
+        if(vs[i].size()<tgt[i]){
+            puts("NG");
+            return;
+        }
+    }
+    rep(i,vs.size()){
+        rep(j,tgt[i]){
+            printf("%c",vs[i][j]);
+        }
+        if(i!=vs.size()-1)
+        printf(" ");
+    }
+    puts("");
 }
 
 signed main(){

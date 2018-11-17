@@ -67,9 +67,40 @@ int casesize;
 
 
 void solve(){
-
-
-
+    int w,h;
+    in(w,h);
+    vector<string> vs(h); //[h][w]
+    map<char,int> mp;
+    rep(i,h) in(vs[i]);
+    rep(y,h){
+        rep(x,w){
+            REP(y2,y+1,h){
+                REP(x2,x+1,w){
+                    if(vs[y][x]!=vs[y][x2]||vs[y][x]!=vs[y2][x]||vs[y][x]!=vs[y2][x2]){
+                        continue;
+                    }
+                    //show(x,y,x2,y2);
+                    int res=0;
+                    REP(y3,y+1,y2){
+                        REP(x3,x+1,x2){
+                            if(vs[y3][x3]!=vs[y][x]){
+                                res++;
+                            }
+                        }
+                    }
+                    mp[vs[y][x]]=max(mp[vs[y][x]],res);
+                }
+            }
+        }
+    }
+    //show(mp['B'],mp['W']);
+    if(mp['B']>mp['W']){
+        out('B',mp['B']);
+    }else if(mp['B']<mp['W']){
+        out('W',mp['W']);
+    }else{
+        puts("DRAW");
+    }
 }
 
 signed main(){
