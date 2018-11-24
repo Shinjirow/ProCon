@@ -85,26 +85,17 @@ signed main(){
         }
     }
     show(ls);
-    rep(i,ls.size()){
-        rep(j,63){
-            if((1LL<<j)&ls[i]){
-                bit[j]++;
-            }
-        }
-    }
-    // show(bit);
-    reverse(all(bit));
     int ans=0;
-    rep(i,63){
-        if(bit[i]>=k){
-            // show(i,62-i,1<<(62LL-i));
-            vi tmp;
-            rep(j,ls.size()){
-                if(1LL<<(62-i)&ls[j]) tmp.pb(ls[j]);
-            }
-            show(1<<(62LL-i),tmp,tmp.size());
-            if(tmp.size()>=k) ans+=1LL<<(62-i);
-            ls=tmp;
+    REPEAT(i,0,63,false){
+        vi tmp;
+        int cmp=ans;
+        cmp|=1LL<<i;
+        show(cmp);
+        rep(j,ls.size()){
+            if((cmp&ls[j])==cmp) tmp.pb(ls[j]);
+        }
+        if(tmp.size()>=k){
+            ans|=1LL<<i;
         }
     }
     out(ans);
