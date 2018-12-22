@@ -62,11 +62,21 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-
+int n;
+vi a;
 
 signed main(){
 
-
+    in(n);
+    resz(n,a);
+    in(a);
+    bool f=true;
+    for(auto e:a){
+        if(e&1){
+            f=false;
+        }
+    }
+    puts(f?"second":"first");
 
     return 0;
 }

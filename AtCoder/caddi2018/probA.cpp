@@ -62,11 +62,29 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
+map< int, int > prime_factor(int n) {
+  map< int, int > ret;
+  for(int i = 2; i * i <= n; i++) {
+    while(n % i == 0) {
+      ret[i]++;
+      n /= i;
+    }
+  }
+  if(n != 1) ret[n] = 1;
+  return ret;
+}
 
+int n,p;
 
 signed main(){
 
-
+    in(n,p);
+    map<int,int> res=prime_factor(p);
+    int ans=1;
+    for(auto e:res){    
+        ans*=pow(e.fs,e.sc/n);
+    }
+    out(ans);
 
     return 0;
 }
