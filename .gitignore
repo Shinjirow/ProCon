@@ -3,3 +3,5 @@
 *.txt
 /LanguageCheck/
 /DoSomething/
+/AtCoder/*/test/
+
