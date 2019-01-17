@@ -67,9 +67,36 @@ int casesize;
 
 
 void solve(){
-
-
-
+    int n;
+    in(n);
+    string s;
+    in(s);
+    int p;
+    bool l=false;
+    int ans=0;
+    while(true){
+        //show(s);
+        p=-1;
+        l=false;
+        rep(i,n-2){
+            if(l) break;
+            if(s.substr(i,3)=="101"){
+                if(p==-1) p=i;
+                if(!(i-1<0)&&!(i+3>n)){
+                    if(s[i-1]!=s[i+3]){
+                        l=true;
+                        p=i;
+                    }
+                }
+            }
+        }
+        //show(p);
+        if(p==-1) break;
+        s.erase(p,3);
+        n-=3;
+        ans++;
+    }
+    out(ans);
 }
 
 signed main(){

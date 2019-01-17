@@ -35,14 +35,14 @@
 
 #define yes puts("Yes")
 #define no puts("No")
-#define case(i) printf("Case #%lld:\n",i)
+#define case(i) printf("Case #%lld: ",i)
 
 using namespace std;
 
 using vi=vector<int>;
 using pint=pair<int,int>;
 
-inline void io(){cin.tie(0);ios::sync_with_stdio(false);cout.tie(0);cout<<fixed<<setprecision(20);}
+struct io{io(){cin.tie(0);ios::sync_with_stdio(false);cout.tie(0);cout<<fixed<<setprecision(20);}}io;
 
 template<class T> istream& operator >>(istream &is, vector<T> &v){for(T &e:v)is>>e;return is;}
 template<class T> ostream& operator <<(ostream &os, vector<T> v){os<<"{";for(T &e:v)os<<e<<(v.size()-(int)(&e-&v[0])>1?", ":"");os<<"}";return os;}
@@ -62,24 +62,29 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-int casesize;
-
-
-
-void solve(){
-
-
-
+map< int, int > prime_factor(int n) {
+  map< int, int > ret;
+  for(int i = 2; i * i <= n; i++) {
+    while(n % i == 0) {
+      ret[i]++;
+      n /= i;
+    }
+  }
+  if(n != 1) ret[n] = 1;
+  return ret;
 }
 
-signed main(){
-    io();
+int n,p;
 
-    in(casesize);
-    rep(i,casesize){
-        case(i+1);
-        solve();
+signed main(){
+
+    in(n,p);
+    map<int,int> res=prime_factor(p);
+    int ans=1;
+    for(auto e:res){    
+        ans*=pow(e.fs,e.sc/n);
     }
+    out(ans);
 
     return 0;
 }

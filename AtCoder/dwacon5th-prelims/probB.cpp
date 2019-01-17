@@ -35,7 +35,7 @@
 
 #define yes puts("Yes")
 #define no puts("No")
-#define case(i) printf("Case #%lld:\n",i)
+#define case(i) printf("Case #%lld: ",i)
 
 using namespace std;
 
@@ -62,24 +62,43 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-int casesize;
-
-
-
-void solve(){
-
-
-
-}
+int n,k;
+vi vec;
+vi bit(63);
+vi ls;
 
 signed main(){
     io();
 
-    in(casesize);
-    rep(i,casesize){
-        case(i+1);
-        solve();
+    in(n,k);
+    vec.pb(0);
+    rep(i,n){
+        int a;
+        in(a);
+        vec.pb(a);
+        vec[i+1]+=vec[i];
     }
+    // show(vec);
+    rep(l,n+1){
+        REP(r,l+1,n+1){
+            ls.pb(vec[r]-vec[l]);
+        }
+    }
+    show(ls);
+    int ans=0;
+    REPEAT(i,0,63,false){
+        vi tmp;
+        int cmp=ans;
+        cmp|=1LL<<i;
+        show(cmp);
+        rep(j,ls.size()){
+            if((cmp&ls[j])==cmp) tmp.pb(ls[j]);
+        }
+        if(tmp.size()>=k){
+            ans|=1LL<<i;
+        }
+    }
+    out(ans);
 
     return 0;
 }

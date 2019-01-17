@@ -67,9 +67,11 @@ int casesize;
 
 
 void solve(){
-
-
-
+    int n;
+    in(n);
+    int m=n%24;
+    int ans=(n/24)*1000+((m>10)?1000:m*100);
+    out(ans);
 }
 
 signed main(){

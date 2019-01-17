@@ -35,14 +35,14 @@
 
 #define yes puts("Yes")
 #define no puts("No")
-#define case(i) printf("Case #%lld:\n",i)
+#define case(i) printf("Case #%lld: ",i)
 
 using namespace std;
 
 using vi=vector<int>;
 using pint=pair<int,int>;
 
-inline void io(){cin.tie(0);ios::sync_with_stdio(false);cout.tie(0);cout<<fixed<<setprecision(20);}
+struct io{io(){cin.tie(0);ios::sync_with_stdio(false);cout.tie(0);cout<<fixed<<setprecision(20);}}io;
 
 template<class T> istream& operator >>(istream &is, vector<T> &v){for(T &e:v)is>>e;return is;}
 template<class T> ostream& operator <<(ostream &os, vector<T> v){os<<"{";for(T &e:v)os<<e<<(v.size()-(int)(&e-&v[0])>1?", ":"");os<<"}";return os;}
@@ -62,24 +62,43 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-int casesize;
-
-
-
-void solve(){
-
-
-
-}
+int n;
+vi a,b;
+int suma,sumb;
+vi diff;
+int ans;
+int req;
 
 signed main(){
-    io();
 
-    in(casesize);
-    rep(i,casesize){
-        case(i+1);
-        solve();
+    in(n);
+    resz(n,a,b,diff);
+    in(a);
+    in(b);
+    rep(i,n){
+        suma+=a[i];
+        sumb+=b[i];
+        diff[i]=a[i]-b[i];
+        if(diff[i]<0) {
+            ans++;
+            req-=diff[i];
+        }
     }
+    if(suma<sumb){
+        out(-1);
+        return 0;
+    }
+    sort(rall(diff));
+    //show(diff,req);
+    rep(i,n){
+        if(req<=0){
+            ans+=i;
+            break;
+        }
+        req-=diff[i];
+    }
+
+    out(ans);
 
     return 0;
 }

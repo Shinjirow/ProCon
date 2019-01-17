@@ -35,14 +35,14 @@
 
 #define yes puts("Yes")
 #define no puts("No")
-#define case(i) printf("Case #%lld:\n",i)
+#define case(i) printf("Case #%lld: ",i)
 
 using namespace std;
 
 using vi=vector<int>;
 using pint=pair<int,int>;
 
-inline void io(){cin.tie(0);ios::sync_with_stdio(false);cout.tie(0);cout<<fixed<<setprecision(20);}
+struct io{io(){cin.tie(0);ios::sync_with_stdio(false);cout.tie(0);cout<<fixed<<setprecision(20);}}io;
 
 template<class T> istream& operator >>(istream &is, vector<T> &v){for(T &e:v)is>>e;return is;}
 template<class T> ostream& operator <<(ostream &os, vector<T> v){os<<"{";for(T &e:v)os<<e<<(v.size()-(int)(&e-&v[0])>1?", ":"");os<<"}";return os;}
@@ -62,23 +62,46 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-int casesize;
-
-
-
-void solve(){
-
-
-
-}
+int n,q;
+vi a;
+int x;
+vi border;
+vi ansptn;
 
 signed main(){
-    io();
 
-    in(casesize);
-    rep(i,casesize){
-        case(i+1);
-        solve();
+    // not solved
+
+    in(n,q);
+    resz(n,a);
+    in(a);
+    int r=n-2;
+    int l=r-1;
+    rep(i,(n+1)/2-1){
+        show(r,l);
+        border.pb((a[r]+a[l]+1)/2);
+        r--;
+        l-=2;
+    }
+    show(border);
+    ansptn.resize((n+1)/2);
+    rep(j,border.size()){
+        int c=0;
+        rep(i,(n+1)/2){
+            show(a[n-c-1]);
+            ansptn[j]+=a[n-c-1];
+            if(c>=j) c+=2;
+            else c++;
+        }
+    }
+    REP(i,n/2,n) ansptn[(n+1)/2-1]+=a[i];
+    show(ansptn);
+
+    rep(i,q){
+        in(x);
+        for(auto e:border){
+
+        }
     }
 
     return 0;

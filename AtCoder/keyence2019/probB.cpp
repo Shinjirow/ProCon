@@ -33,16 +33,16 @@
 #define show(...) cerr<<#__VA_ARGS__<<" = ";_DEBUG(__VA_ARGS__)
 #define showlr(n,l,r) cerr<<#n<<" = ";for(int i=l;i<r;i++){cerr<<n[i]<<", ";}cerr<<endl // [l, r)
 
-#define yes puts("Yes")
-#define no puts("No")
-#define case(i) printf("Case #%lld:\n",i)
+#define yes puts("YES")
+#define no puts("NO")
+#define case(i) printf("Case #%lld: ",i)
 
 using namespace std;
 
 using vi=vector<int>;
 using pint=pair<int,int>;
 
-inline void io(){cin.tie(0);ios::sync_with_stdio(false);cout.tie(0);cout<<fixed<<setprecision(20);}
+struct io{io(){cin.tie(0);ios::sync_with_stdio(false);cout.tie(0);cout<<fixed<<setprecision(20);}}io;
 
 template<class T> istream& operator >>(istream &is, vector<T> &v){for(T &e:v)is>>e;return is;}
 template<class T> ostream& operator <<(ostream &os, vector<T> v){os<<"{";for(T &e:v)os<<e<<(v.size()-(int)(&e-&v[0])>1?", ":"");os<<"}";return os;}
@@ -62,24 +62,24 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-int casesize;
+string s;
 
-
-
-void solve(){
-
-
-
-}
+string tgt="keyence";
 
 signed main(){
-    io();
 
-    in(casesize);
-    rep(i,casesize){
-        case(i+1);
-        solve();
+    in(s);
+    
+    rep(i,s.size()){
+        rep(j,s.size()){
+            string tmp=s;
+            tmp.erase(tmp.begin()+i,tmp.begin()+j);
+            if(tgt==tmp){
+                yes;
+                return 0;
+            }
+        }
     }
-
+    no;
     return 0;
 }

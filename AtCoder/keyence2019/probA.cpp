@@ -33,16 +33,16 @@
 #define show(...) cerr<<#__VA_ARGS__<<" = ";_DEBUG(__VA_ARGS__)
 #define showlr(n,l,r) cerr<<#n<<" = ";for(int i=l;i<r;i++){cerr<<n[i]<<", ";}cerr<<endl // [l, r)
 
-#define yes puts("Yes")
-#define no puts("No")
-#define case(i) printf("Case #%lld:\n",i)
+#define yes puts("YES")
+#define no puts("NO")
+#define case(i) printf("Case #%lld: ",i)
 
 using namespace std;
 
 using vi=vector<int>;
 using pint=pair<int,int>;
 
-inline void io(){cin.tie(0);ios::sync_with_stdio(false);cout.tie(0);cout<<fixed<<setprecision(20);}
+struct io{io(){cin.tie(0);ios::sync_with_stdio(false);cout.tie(0);cout<<fixed<<setprecision(20);}}io;
 
 template<class T> istream& operator >>(istream &is, vector<T> &v){for(T &e:v)is>>e;return is;}
 template<class T> ostream& operator <<(ostream &os, vector<T> v){os<<"{";for(T &e:v)os<<e<<(v.size()-(int)(&e-&v[0])>1?", ":"");os<<"}";return os;}
@@ -62,24 +62,21 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-int casesize;
-
-
-
-void solve(){
-
-
-
-}
+set<char> s;
 
 signed main(){
-    io();
 
-    in(casesize);
-    rep(i,casesize){
-        case(i+1);
-        solve();
+    char c;
+    rep(i,4) {
+        in(c);
+        s.insert(c);
     }
+    if(s.find('1')!=s.end()&&
+    s.find('9')!=s.end()&&
+    s.find('7')!=s.end()&&
+    s.find('4')!=s.end()){
+        yes;
+    }else no;
 
     return 0;
 }

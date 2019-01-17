@@ -67,9 +67,27 @@ int casesize;
 
 
 void solve(){
-
-
-
+    int n;
+    in(n);
+    vi vec(n);
+    in(vec);
+    set<int> st;
+    rep(i,(1<<n)){
+        int res=0;
+        rep(j,n){
+            //show(1<<j,i,(1<<j) & i);
+            if((1<<j) & i){
+                res+=vec[j];  
+            }
+        }
+        st.insert(res);
+        //show(res);
+    }
+    int ans=0;
+    for(auto e:st){
+        ans+=e;
+    }
+    out(ans);
 }
 
 signed main(){

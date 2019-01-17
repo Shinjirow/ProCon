@@ -67,9 +67,40 @@ int casesize;
 
 
 void solve(){
-
-
-
+    stack<int> st;
+    string s;
+    in(s);
+    rep(i,s.size()){
+        if(isdigit(s[i])){
+            st.push(s[i]-'0');
+        }else if(s[i]=='&'){
+            int a=st.top();st.pop();
+            int b=st.top();st.pop();
+            st.push(a & b);
+        }else if(s[i]=='|'){
+            int a=st.top();st.pop();
+            int b=st.top();st.pop();
+            st.push(a | b);
+        }else if(s[i]=='^'){
+            int a=st.top();st.pop();
+            int b=st.top();st.pop();
+            st.push(a ^ b);
+        }else if(s[i]=='<'){
+            i++;
+            int a=st.top();st.pop();
+            int b=st.top();st.pop();
+            st.push(b<<a);
+        }else if(s[i]=='>'){
+            i++;
+            int a=st.top();st.pop();
+            int b=st.top();st.pop();
+            st.push(b>>a);
+        }else{
+            exit(1);
+        }
+        //show(st.top());
+    }
+    out(st.top());
 }
 
 signed main(){

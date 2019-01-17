@@ -35,7 +35,7 @@
 
 #define yes puts("Yes")
 #define no puts("No")
-#define case(i) printf("Case #%lld:\n",i)
+#define case(i) printf("Case #%lld: ",i)
 
 using namespace std;
 
@@ -62,24 +62,12 @@ const int INF=1LL<<55;
 const int MOD=1000000007;
 const double EPS=1e-8;
 
-int casesize;
 
-
-
-void solve(){
-
-
-
-}
 
 signed main(){
     io();
 
-    in(casesize);
-    rep(i,casesize){
-        case(i+1);
-        solve();
-    }
+
 
     return 0;
 }

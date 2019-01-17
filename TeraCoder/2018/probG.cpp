@@ -64,12 +64,32 @@ const double EPS=1e-8;
 
 int casesize;
 
-
+vector<vector<bool>> dp(110,vector<bool>(110*110,false));
 
 void solve(){
-
-
-
+    rep(i,110){
+        fill(all(dp[i]),false);
+    }
+    int n;
+    in(n);
+    vi vec(n);
+    in(vec);
+    dp[0][0]=true;
+    rep(i,n){
+        rep(j,110*110){
+            if(dp[i][j]){
+                dp[i+1][j]=true;
+                dp[i+1][j+vec[i]]=true;
+            }
+        }
+    }
+    int ans=0;
+    rep(i,110*110){
+        if(dp[n][i]){
+            ans+=i;
+        }
+    }
+    out(ans);
 }
 
 signed main(){

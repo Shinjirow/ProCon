@@ -64,12 +64,26 @@ const double EPS=1e-8;
 
 int casesize;
 
+/**
+ * 最大公約数を得るプログラム
+ * O(log max(a,b))
+ */
+int gcd(int a, int b){
+    if(b == 0) return a;
+    return gcd(b, a % b);
+}
 
+/**
+ * 最小公倍数を得るプログラム
+ */
+int lcm(int a, int b){
+    return a * b / gcd(a, b);
+}
 
 void solve(){
-
-
-
+    int x,y;
+    in(x,y);
+    out(lcm(x,y));
 }
 
 signed main(){
